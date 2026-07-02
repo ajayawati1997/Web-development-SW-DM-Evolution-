@@ -1071,12 +1071,18 @@
       width: min(1040px, 100%);
       max-height: min(82vh, 820px);
       overflow: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
       border: 1px solid rgba(255, 255, 255, .16);
       background:
         linear-gradient(145deg, rgba(18, 21, 23, .98), rgba(6, 7, 9, .98)),
         var(--black);
       box-shadow: 0 28px 80px rgba(0, 0, 0, .56), 0 0 36px rgba(31, 197, 255, .1);
       padding: clamp(24px, 4vw, 42px);
+    }
+
+    .sample-gallery-panel::-webkit-scrollbar {
+      display: none;
     }
 
     .gallery-close {
@@ -1807,7 +1813,7 @@
       </div>
       <div>
         <strong>Location</strong>
-        <p>H-1/1-L, Menon Piston Chouck, Kupwad MIDC, Sangli, Maharashtra, India 416-436</p>
+        <p>H-1/1-L, Menon Piston Chouck, MIDC Kupwad, Sangli, Maharashtra, India 416-436</p>
       </div>
       <div>
         <strong>Contact</strong>

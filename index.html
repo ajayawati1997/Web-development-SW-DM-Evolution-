@@ -1,0 +1,2036 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SW-DM Evolution</title>
+  <style>
+    :root {
+      --black: #050607;
+      --ink: #14171c;
+      --muted: #5d646b;
+      --paper: #d9d9d9;
+      --panel: #f5f5f3;
+      --blue: #0c6f8e;
+      --red: #ef3434;
+      --line: #bfc3c6;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(12, 111, 142, .14), transparent 24%),
+        var(--paper);
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 6, 7, .94);
+      color: white;
+      box-shadow: 0 16px 28px rgba(0, 0, 0, .26);
+    }
+
+    .nav {
+      width: min(1180px, calc(100% - 36px));
+      min-height: 88px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 330px;
+    }
+
+    .logo {
+      width: 108px;
+      height: 72px;
+      border-radius: 4px;
+      background: #050607 url("assets/main-logo-hd.png") center / 94% auto no-repeat;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), 0 10px 22px rgba(0, 114, 152, .24);
+      animation: logoPulse 2.9s ease-in-out infinite;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: clamp(19px, 2.7vw, 30px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 4px;
+      color: #b7c0c6;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: #d5d9dc;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .quote {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 4px;
+      background: var(--red);
+      color: white;
+    }
+
+    .quote:hover,
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .hero {
+      position: relative;
+      min-height: min(720px, calc(100vh - 88px));
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 76% 34%, rgba(12, 111, 142, .42), transparent 30%),
+        linear-gradient(120deg, rgba(239, 52, 52, .22) 0 10%, transparent 10% 18%, rgba(255, 255, 255, .07) 18% 19%, transparent 19%),
+        linear-gradient(90deg, rgba(0, 0, 0, .98) 0 36%, rgba(0, 0, 0, .82) 68%, rgba(0, 0, 0, .96)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .05) 0 1px, transparent 1px 24px);
+      color: white;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 22px;
+      background: linear-gradient(#3d3d3d, #bdbdbd, #e8e8e8);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: min(7vw, 92px);
+      top: 18%;
+      width: min(38vw, 430px);
+      aspect-ratio: 1.2;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background:
+        linear-gradient(135deg, transparent 0 31%, rgba(223, 245, 255, .82) 31% 39%, transparent 39% 57%, rgba(58, 145, 170, .72) 57% 66%, transparent 66%),
+        linear-gradient(45deg, transparent 0 24%, rgba(30, 104, 128, .72) 24% 33%, transparent 33% 64%, rgba(236, 247, 251, .72) 64% 73%, transparent 73%);
+      opacity: .55;
+      filter: drop-shadow(0 26px 48px rgba(12, 111, 142, .26));
+      animation: emblemFloat 4.8s ease-in-out infinite;
+    }
+
+    .game-graphic {
+      position: absolute;
+      right: min(6vw, 76px);
+      top: 22%;
+      width: min(41vw, 500px);
+      aspect-ratio: 1.15;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .target-ring {
+      position: absolute;
+      inset: 14%;
+      border: 2px solid rgba(31, 197, 255, .52);
+      border-radius: 50%;
+      box-shadow:
+        0 0 32px rgba(31, 197, 255, .26),
+        inset 0 0 34px rgba(31, 197, 255, .16);
+      animation: rotateRing 11s linear infinite;
+    }
+
+    .target-ring::before,
+    .target-ring::after {
+      content: "";
+      position: absolute;
+      inset: 13%;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, .34);
+    }
+
+    .target-ring::after {
+      inset: 34%;
+      border-style: solid;
+      border-color: rgba(239, 52, 52, .64);
+      box-shadow: 0 0 24px rgba(239, 52, 52, .28);
+    }
+
+    .ship {
+      position: absolute;
+      left: 43%;
+      top: 38%;
+      width: 78px;
+      height: 96px;
+      clip-path: polygon(50% 0, 84% 68%, 60% 58%, 50% 100%, 40% 58%, 16% 68%);
+      background: linear-gradient(180deg, #ecf8ff, #1fc5ff 45%, #ef3434 100%);
+      filter: drop-shadow(0 0 20px rgba(31, 197, 255, .82));
+      animation: shipHover 2.4s ease-in-out infinite;
+    }
+
+    .ship::after {
+      content: "";
+      position: absolute;
+      left: 35%;
+      right: 35%;
+      bottom: -28px;
+      height: 34px;
+      background: linear-gradient(180deg, rgba(239, 52, 52, .92), transparent);
+      filter: blur(3px);
+      animation: thruster 450ms ease-in-out infinite alternate;
+    }
+
+    .hud-panel {
+      position: absolute;
+      min-width: 142px;
+      border: 1px solid rgba(31, 197, 255, .42);
+      background: rgba(5, 10, 14, .72);
+      box-shadow: 0 0 28px rgba(31, 197, 255, .16);
+      padding: 12px 14px;
+      color: #dff5ff;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .hud-panel span {
+      display: block;
+      margin-top: 6px;
+      height: 5px;
+      background: linear-gradient(90deg, var(--red) 0 32%, var(--blue) 32% 100%);
+      box-shadow: 0 0 14px rgba(31, 197, 255, .32);
+    }
+
+    .hud-a {
+      left: 0;
+      top: 10%;
+      min-width: 218px;
+      animation: panelBlink 2.2s ease-in-out infinite;
+    }
+
+    .hud-b {
+      right: 0;
+      bottom: 26%;
+      animation: panelBlink 2.2s ease-in-out .8s infinite;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 76px 0 92px;
+      display: grid;
+      grid-template-columns: minmax(280px, 610px) minmax(220px, 1fr);
+      gap: 34px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #dce7eb;
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .slashes {
+      width: 48px;
+      height: 25px;
+      background:
+        linear-gradient(120deg, transparent 0 24%, var(--red) 24% 43%, transparent 43% 58%, var(--red) 58% 77%, transparent 77%);
+    }
+
+    h1 {
+      margin: 18px 0 16px;
+      font-size: clamp(46px, 8vw, 104px);
+      line-height: .9;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 580px;
+      margin: 0;
+      color: #e5e8ea;
+      font-size: clamp(16px, 2.3vw, 22px);
+      line-height: 1.45;
+      font-weight: 750;
+    }
+
+    .hero-card {
+      position: absolute;
+      right: calc((100vw - 100%) / -2 + 18px);
+      bottom: 28px;
+      width: min(42vw, 390px);
+      min-height: 86px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+      border-left: 6px solid var(--blue);
+      background: rgba(5, 6, 7, .96);
+      padding: 18px 20px;
+      box-shadow: 0 22px 48px rgba(0, 0, 0, .48), 0 0 34px rgba(12, 111, 142, .18);
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(31, 197, 255, .2), transparent);
+      transform: translateX(-120%);
+      animation: cardSweep 3s ease-in-out infinite;
+    }
+
+    .hero-card strong {
+      position: relative;
+      display: block;
+      font-size: 40px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .hero-card span {
+      position: relative;
+      display: block;
+      color: #c6d2d7;
+      font-weight: 900;
+      font-size: 12px;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .workflow-title {
+      max-width: 330px;
+      color: white;
+      font-size: clamp(26px, 3vw, 40px) !important;
+      line-height: 1.02 !important;
+      text-transform: uppercase;
+    }
+
+    .stats-strip {
+      background: var(--black);
+      color: white;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .stat {
+      min-height: 132px;
+      padding: 24px;
+      background:
+        linear-gradient(135deg, rgba(31, 197, 255, .13), transparent 38%),
+        #080b0f;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat::after {
+      content: "";
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 20px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--red), var(--blue));
+      opacity: .82;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 9px;
+      color: #b9c3c9;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .band {
+      padding: 68px 0;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 52px);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      width: min(460px, 100%);
+      margin: 0;
+      color: var(--muted);
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .capabilities {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .capability {
+      min-height: 310px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #111;
+      box-shadow: 0 18px 32px rgba(0, 0, 0, .18);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .capability:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 46px rgba(0, 0, 0, .28), 0 0 34px rgba(12, 111, 142, .22);
+    }
+
+    .capability::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .1) 0 1px, transparent 1px 18px),
+        radial-gradient(circle at 76% 22%, var(--glow, rgba(12, 111, 142, .44)), transparent 34%),
+        linear-gradient(135deg, var(--base, #18232d), #07090c);
+      animation: gridDrift 8s linear infinite;
+    }
+
+    .capability::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 0 18%, rgba(239, 52, 52, .72) 18% 21%, transparent 21% 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, .05), rgba(0, 0, 0, .76));
+      animation: redStrike 4.6s ease-in-out infinite;
+    }
+
+    .capability .meter,
+    .sector .meter {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 18px;
+      height: 7px;
+      z-index: 1;
+      background: rgba(255, 255, 255, .12);
+      overflow: hidden;
+      border-radius: 999px;
+    }
+
+    .capability .meter::before,
+    .sector .meter::before {
+      content: "";
+      display: block;
+      width: var(--charge, 72%);
+      height: 100%;
+      background: linear-gradient(90deg, var(--red), #1fc5ff);
+      box-shadow: 0 0 18px rgba(31, 197, 255, .6);
+      animation: meterPulse 1.8s ease-in-out infinite;
+    }
+
+    .capability div {
+      position: absolute;
+      inset: auto 18px 20px;
+      z-index: 1;
+      color: white;
+    }
+
+    .capability h3 {
+      margin: 0 0 9px;
+      font-size: 24px;
+      line-height: 1.08;
+      text-transform: uppercase;
+    }
+
+    .capability p {
+      margin: 0;
+      color: #dce2e5;
+      font-weight: 750;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .machine-band {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(216, 216, 216, .98) 0 42%, rgba(216, 216, 216, .68) 60%, rgba(216, 216, 216, .95)),
+        radial-gradient(circle at 78% 48%, rgba(12, 111, 142, .34), transparent 30%),
+        repeating-linear-gradient(90deg, rgba(20, 23, 28, .08) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(0deg, rgba(20, 23, 28, .06) 0 1px, transparent 1px 58px);
+      min-height: 520px;
+      display: grid;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .process {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+    }
+
+    .machine-photo {
+      position: absolute;
+      right: clamp(-86px, -4vw, -18px);
+      top: 50%;
+      width: min(58vw, 760px);
+      min-width: 430px;
+      transform: translateY(-50%);
+      z-index: 1;
+      pointer-events: none;
+      margin: 0;
+    }
+
+    .machine-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 28px 34px rgba(20, 23, 28, .26)) saturate(1.05) contrast(1.05);
+    }
+
+    .process h2 {
+      margin-bottom: 20px;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .process-item {
+      background: rgba(255, 255, 255, .74);
+      border: 1px solid rgba(160, 164, 168, .7);
+      border-radius: 4px;
+      padding: 17px;
+      min-height: 116px;
+      box-shadow: 0 12px 22px rgba(20, 23, 28, .08);
+      transition: transform .22s ease, border-color .22s ease;
+    }
+
+    .process-item:hover {
+      transform: translateX(6px);
+      border-color: rgba(12, 111, 142, .55);
+    }
+
+    .process-item strong {
+      display: block;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+
+    .process-item span {
+      color: var(--muted);
+      line-height: 1.45;
+      font-weight: 720;
+      font-size: 14px;
+    }
+
+    .quality {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(245, 245, 243, .96), rgba(245, 245, 243, .84)),
+        repeating-linear-gradient(135deg, rgba(20, 23, 28, .06) 0 1px, transparent 1px 26px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quality-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, .88fr) minmax(320px, 1.12fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .quality-panel {
+      border-left: 6px solid var(--red);
+      background: #10161d;
+      color: white;
+      padding: 30px;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quality-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(31, 197, 255, .22), transparent 30%),
+        linear-gradient(120deg, transparent 0 64%, rgba(239, 52, 52, .55) 64% 67%, transparent 67%);
+      pointer-events: none;
+    }
+
+    .quality-panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .quality-panel p {
+      color: #d8e0e5;
+      font-size: 17px;
+      font-weight: 750;
+      line-height: 1.55;
+      margin: 18px 0 0;
+    }
+
+    .cert-line {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .cert-line span {
+      border: 1px solid rgba(255, 255, 255, .2);
+      padding: 12px 14px;
+      color: #eef7fb;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .quality-steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .quality-step {
+      min-height: 172px;
+      padding: 20px;
+      border: 1px solid rgba(160, 164, 168, .7);
+      background: rgba(255, 255, 255, .76);
+      border-radius: 4px;
+      box-shadow: 0 12px 22px rgba(20, 23, 28, .08);
+      transition: transform .22s ease, border-color .22s ease;
+    }
+
+    .quality-step:hover {
+      transform: translateY(-5px);
+      border-color: rgba(239, 52, 52, .48);
+    }
+
+    .quality-step small {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 28px;
+      margin-bottom: 18px;
+      background: var(--blue);
+      color: white;
+      font-weight: 950;
+      font-size: 12px;
+    }
+
+    .quality-step strong {
+      display: block;
+      text-transform: uppercase;
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .quality-step span {
+      color: var(--muted);
+      font-weight: 720;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .sectors {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(239, 52, 52, .18), transparent 24%),
+        radial-gradient(circle at 86% 14%, rgba(31, 197, 255, .16), transparent 28%),
+        #111820;
+      color: white;
+    }
+
+    .sectors .section-head p {
+      color: #b7c5cc;
+    }
+
+    .sector-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .sector {
+      min-height: 260px;
+      display: flex;
+      align-items: end;
+      padding: 18px;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      background: #26313b;
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .sector:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, .28), 0 0 28px rgba(31, 197, 255, .14);
+    }
+
+    .sector::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .12) 0 1px, transparent 1px 20px),
+        radial-gradient(circle at 80% 24%, var(--glow, rgba(12, 111, 142, .48)), transparent 38%),
+        linear-gradient(135deg, var(--base, #26313b), #07090c);
+      animation: gridDrift 9s linear infinite;
+    }
+
+    .sector::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 0 65%, rgba(31, 197, 255, .2) 65% 68%, transparent 68%),
+        linear-gradient(180deg, transparent 15%, rgba(0, 0, 0, .82));
+    }
+
+    .sector strong {
+      position: relative;
+      z-index: 1;
+      text-transform: uppercase;
+      font-size: 22px;
+    }
+
+    .sector-drawing {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 48px;
+      z-index: 1;
+      width: calc(100% - 36px);
+      height: 132px;
+      color: rgba(225, 246, 255, .88);
+      opacity: .9;
+      filter: drop-shadow(0 0 14px rgba(31, 197, 255, .24));
+    }
+
+    .sector-drawing path,
+    .sector-drawing circle,
+    .sector-drawing rect,
+    .sector-drawing line,
+    .sector-drawing polyline,
+    .sector-drawing polygon {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .sector-drawing .accent {
+      color: rgba(239, 52, 52, .9);
+      stroke: currentColor;
+    }
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(5, 6, 7, .92), rgba(5, 6, 7, .76)),
+        radial-gradient(circle at 80% 20%, rgba(12, 111, 142, .34), transparent 30%),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, .07) 0 1px, transparent 1px 22px);
+      color: white;
+      padding: 76px 0;
+    }
+
+    .cta::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(31, 197, 255, .15), transparent);
+      transform: translateX(-100%);
+      animation: cardSweep 5.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .cta-box {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+
+    .cta h2 {
+      margin-bottom: 18px;
+    }
+
+    .cta p {
+      margin: 0 0 28px;
+      color: #e3e8eb;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 940px;
+    }
+
+    .contact-tile {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .06);
+      padding: 16px;
+      min-height: 104px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+      cursor: pointer;
+    }
+
+    .contact-tile:hover,
+    .contact-tile:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(31, 197, 255, .42);
+      box-shadow: 0 16px 28px rgba(0, 0, 0, .18), 0 0 22px rgba(31, 197, 255, .12);
+    }
+
+    .contact-tile:active {
+      transform: translateY(-1px);
+      border-color: rgba(31, 197, 255, .68);
+      box-shadow:
+        0 12px 22px rgba(0, 0, 0, .2),
+        0 0 30px rgba(31, 197, 255, .28),
+        inset 0 0 18px rgba(31, 197, 255, .12);
+    }
+
+    .contact-tile strong {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-bottom: 8px;
+      color: white;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+
+    .contact-tile span {
+      position: relative;
+      z-index: 1;
+      display: block;
+      color: #cbd5da;
+      font-weight: 750;
+      line-height: 1.45;
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .contact-tile small {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin-top: auto;
+      padding-top: 14px;
+      color: #eaf8ff;
+      font-size: 11px;
+      font-weight: 950;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border-radius: 4px;
+      font-weight: 950;
+      text-transform: uppercase;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, .22);
+    }
+
+    .primary {
+      background: var(--red);
+      color: white;
+    }
+
+    .secondary {
+      border: 1px solid rgba(255, 255, 255, .62);
+      color: white;
+    }
+
+    .footer-gallery-access {
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 22px;
+    }
+
+    .footer-client-logo {
+      width: clamp(138px, 18vw, 230px);
+      height: clamp(82px, 10vw, 132px);
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: #020304;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 14px 30px rgba(0, 0, 0, .36);
+    }
+
+    .footer-client-copy strong {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+      color: #8f989e;
+      font-size: clamp(18px, 2.2vw, 28px);
+    }
+
+    .footer-client-copy strong::before {
+      content: "";
+      width: 34px;
+      height: 13px;
+      background: linear-gradient(90deg, var(--red), rgba(239, 52, 52, .2));
+      clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
+      box-shadow: 0 0 18px rgba(239, 52, 52, .2);
+      flex: 0 0 auto;
+    }
+
+    .footer-client-copy p {
+      max-width: 580px;
+      color: #9da6ac;
+      font-size: 14px;
+    }
+
+    .gallery-open {
+      position: relative;
+      overflow: hidden;
+      min-width: 210px;
+      border-color: rgba(255, 255, 255, .28);
+      background: rgba(255, 255, 255, .035);
+      color: rgba(232, 238, 242, .88);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+      backdrop-filter: blur(4px);
+      justify-self: end;
+      align-self: end;
+      margin: 0 22px 12px 0;
+    }
+
+    .gallery-open::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .14), transparent);
+      transform: translateX(-120%);
+      transition: transform .45s ease;
+      pointer-events: none;
+    }
+
+    .gallery-open span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-open:hover,
+    .gallery-open:focus-visible {
+      border-color: rgba(31, 197, 255, .5);
+      background: rgba(255, 255, 255, .06);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, .18), 0 0 18px rgba(31, 197, 255, .1);
+    }
+
+    .gallery-open:hover::before,
+    .gallery-open:focus-visible::before {
+      transform: translateX(120%);
+    }
+
+    .sample-gallery-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .sample-gallery-modal[hidden] {
+      display: none;
+    }
+
+    .sample-gallery-backdrop {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(31, 197, 255, .12), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(200, 21, 32, .14), transparent 34%),
+        rgba(0, 0, 0, .84);
+      backdrop-filter: blur(8px);
+    }
+
+    .sample-gallery-panel {
+      position: relative;
+      width: min(1040px, 100%);
+      max-height: min(82vh, 820px);
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background:
+        linear-gradient(145deg, rgba(18, 21, 23, .98), rgba(6, 7, 9, .98)),
+        var(--black);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .56), 0 0 36px rgba(31, 197, 255, .1);
+      padding: clamp(24px, 4vw, 42px);
+    }
+
+    .gallery-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255, 255, 255, .22);
+      background: rgba(255, 255, 255, .06);
+      color: white;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .gallery-close:hover,
+    .gallery-close:focus-visible {
+      border-color: rgba(31, 197, 255, .65);
+      box-shadow: 0 0 20px rgba(31, 197, 255, .16);
+      transform: translateY(-1px);
+    }
+
+    .gallery-head {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 22px;
+      padding-right: 48px;
+    }
+
+    .sample-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-slot {
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      border: 1px dashed rgba(255, 255, 255, .18);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .08), transparent 38%),
+        rgba(255, 255, 255, .035);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      color: #d5dde2;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .gallery-slot.has-image {
+      aspect-ratio: auto;
+      display: block;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      letter-spacing: 0;
+      transition: transform .22s ease;
+    }
+
+    .gallery-slot.has-image:hover {
+      transform: translateY(-3px);
+    }
+
+    .gallery-zoom {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025)),
+        rgba(255, 255, 255, .04);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, .22);
+      cursor: zoom-in;
+      transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+    }
+
+    .gallery-zoom img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      background: #e8e8e8;
+      transition: transform .22s ease, filter .22s ease;
+    }
+
+    .gallery-slot.portrait-slot .gallery-zoom {
+      width: min(68%, 180px);
+      aspect-ratio: 1 / 2;
+      margin: 0 auto;
+      border-color: rgba(255, 255, 255, .22);
+    }
+
+    .gallery-slot.portrait-slot .gallery-zoom img {
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .gallery-zoom:hover img,
+    .gallery-zoom:focus-visible img {
+      transform: scale(1.025);
+      filter: contrast(1.04) saturate(1.04);
+    }
+
+    .gallery-zoom:hover,
+    .gallery-zoom:focus-visible {
+      border-color: rgba(31, 197, 255, .48);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, .34), 0 0 22px rgba(31, 197, 255, .13);
+    }
+
+    .gallery-slot.has-image figcaption {
+      margin-top: 7px;
+      color: rgba(207, 216, 221, .62);
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: .02em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .image-zoom-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+
+    .image-zoom-modal[hidden] {
+      display: none;
+    }
+
+    .image-zoom-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .86);
+      backdrop-filter: blur(8px);
+    }
+
+    .image-zoom-panel {
+      position: relative;
+      z-index: 1;
+      width: min(1280px, 96vw);
+    }
+
+    .image-zoom-panel img {
+      display: block;
+      width: 100%;
+      max-height: 86vh;
+      object-fit: contain;
+      background: #ededed;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, .28);
+    }
+
+    .image-zoom-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255, 255, 255, .24);
+      background: rgba(5, 6, 7, .92);
+      color: white;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    footer {
+      background: var(--black);
+      color: #d9e0e4;
+      padding: 32px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr repeat(3, minmax(150px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    footer strong {
+      display: block;
+      color: white;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      margin: 0;
+      color: #aeb8be;
+      line-height: 1.5;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.35); }
+    }
+
+    @keyframes emblemFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-14px) rotate(1.5deg); }
+    }
+
+    @keyframes rotateRing {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes shipHover {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-16px) rotate(2deg); }
+    }
+
+    @keyframes thruster {
+      from { opacity: .52; transform: scaleY(.68); }
+      to { opacity: 1; transform: scaleY(1.08); }
+    }
+
+    @keyframes panelBlink {
+      0%, 100% { opacity: .72; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-5px); }
+    }
+
+    @keyframes cardSweep {
+      0%, 38% { transform: translateX(-120%); }
+      70%, 100% { transform: translateX(120%); }
+    }
+
+    @keyframes gridDrift {
+      from { background-position: 0 0, 0 0, 0 0; }
+      to { background-position: 72px 72px, 0 0, 0 0; }
+    }
+
+    @keyframes redStrike {
+      0%, 100% { opacity: .76; transform: translateX(-2%); }
+      50% { opacity: 1; transform: translateX(4%); }
+    }
+
+    @keyframes meterPulse {
+      0%, 100% { filter: brightness(.9); }
+      50% { filter: brightness(1.5); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: min(100%, 420px);
+        justify-self: start;
+        margin-top: 10px;
+      }
+
+      .game-graphic {
+        opacity: .34;
+        right: 4vw;
+        top: 18%;
+        width: min(62vw, 460px);
+      }
+
+      .capabilities,
+      .stats-grid,
+      .sector-grid,
+      .contact-highlights,
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .quality-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .sample-gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .brand {
+        min-width: 0;
+        gap: 12px;
+      }
+
+      .logo {
+        width: 88px;
+        height: 60px;
+        flex: 0 0 auto;
+      }
+
+      .brand strong {
+        font-size: clamp(18px, 6vw, 25px);
+      }
+
+      .brand span {
+        font-size: 11px;
+      }
+
+      .nav-links {
+        gap: 16px;
+        font-size: 12px;
+      }
+
+      .hero {
+        min-height: auto;
+        align-items: start;
+      }
+
+      .hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 26px;
+        padding: 54px 0 76px;
+      }
+
+      .hero-card {
+        width: min(100%, 320px);
+        min-height: auto;
+        display: block;
+        margin-top: 0;
+        padding: 18px 20px;
+        align-self: flex-start;
+      }
+
+      .hero-card strong {
+        font-size: 34px;
+      }
+
+      .hero-card span {
+        font-size: 12px;
+        line-height: 1.28;
+      }
+
+      .capabilities,
+      .stats-grid,
+      .sector-grid,
+      .process-grid,
+      .quality-steps,
+      .contact-highlights,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .band,
+      .cta {
+        padding: 48px 0;
+      }
+
+      .machine-band {
+        min-height: auto;
+        padding: 52px 0;
+      }
+
+      .game-graphic {
+        display: none;
+      }
+
+      .hero::before {
+        width: 74vw;
+        right: -12vw;
+        top: 15%;
+      }
+
+      .machine-photo {
+        opacity: .24;
+      }
+
+      .footer-gallery-access {
+        grid-template-columns: 1fr;
+        justify-items: start;
+      }
+
+      .gallery-open {
+        width: 100%;
+        margin: 0;
+        justify-self: stretch;
+      }
+
+      .sample-gallery-modal {
+        padding: 14px;
+      }
+
+      .sample-gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sample-gallery-panel {
+        max-height: 86vh;
+        padding: 24px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="SW-DM Evolution home">
+        <span class="logo" aria-hidden="true"></span>
+        <span>
+          <strong>SW-DM Evolution</strong>
+          <span>Since 2004</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a href="#capabilities">Capabilities</a>
+        <a href="#process">Process</a>
+        <a href="#quality">Quality</a>
+        <a href="#sectors">Sectors</a>
+        <a class="quote" href="#contact">Connect</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="SW-DM Evolution overview">
+      <div class="game-graphic" aria-hidden="true">
+        <div class="target-ring"></div>
+        <div class="ship"></div>
+        <div class="hud-panel hud-a">Design Development Machining<span></span></div>
+        <div class="hud-panel hud-b">Zero Defect<span></span></div>
+      </div>
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow"><span class="slashes" aria-hidden="true"></span> Mechanical Industry Evolution</div>
+          <h1>Future Is Here</h1>
+          <p>Precision machining, product development, die-pattern work, and engineered component support for demanding industrial sectors.</p>
+        </div>
+        <div class="hero-card">
+          <strong id="partsCounter" data-target="5000">0+</strong>
+          <span>Parts developed with zero-defect focus</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-strip" aria-label="Company highlights">
+      <div class="wrap stats-grid">
+        <div class="stat reveal">
+          <strong id="experienceYears" data-start-year="2004">22+</strong>
+          <span>Years of shop-floor experience</span>
+        </div>
+        <div class="stat reveal">
+          <strong>5,000+</strong>
+          <span>Parts developed and supported</span>
+        </div>
+        <div class="stat reveal">
+          <strong>4</strong>
+          <span>Core industrial sectors served</span>
+        </div>
+        <div class="stat reveal">
+          <strong>1</strong>
+          <span>Focused machining partner</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="capabilities">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What We Build</h2>
+          <p>From concept support to machine-shop execution, SW-DM Evolution handles complex part development with practical manufacturing discipline.</p>
+        </div>
+        <div class="capabilities">
+          <article class="capability" style="--base:#17232d; --glow:rgba(12, 111, 142, .42);">
+            <span class="meter" style="--charge:82%;" aria-hidden="true"></span>
+            <div>
+              <h3>Design Development</h3>
+              <p>CAD-CAM support, tooling thought, fixture planning, and manufacturable product refinement.</p>
+            </div>
+          </article>
+          <article class="capability" style="--base:#20242a; --glow:rgba(239, 52, 52, .32);">
+            <span class="meter" style="--charge:74%;" aria-hidden="true"></span>
+            <div>
+              <h3>Machine Shop</h3>
+              <p>Modern machining methods for batch work, single-piece development, and specific requirement parts.</p>
+            </div>
+          </article>
+          <article class="capability" style="--base:#111b20; --glow:rgba(223, 245, 255, .26);">
+            <span class="meter" style="--charge:91%;" aria-hidden="true"></span>
+            <div>
+              <h3>Precision Work</h3>
+              <p>Machining discipline for repeatable outputs, controlled finishes, and zero-defect delivery goals.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="machine-band" id="process">
+      <figure class="machine-photo">
+        <img src="assets/haas-machine.png" alt="HAAS VMC machining center">
+      </figure>
+      <div class="wrap">
+        <div class="process">
+          <h2>Machining With Control</h2>
+          <p>From drawing review to final machining, SW-DM Evolution focuses on accurate setups, stable process planning, and clean component finishing for single-piece and batch production.</p>
+          <div class="process-grid">
+            <div class="process-item">
+              <strong>Hydro & Chemical Pump Parts</strong>
+              <span>Component machining for pump assemblies and related industrial applications.</span>
+            </div>
+            <div class="process-item">
+              <strong>Pattern, Die & Mould</strong>
+              <span>Development support for dies, patterns, mould bases, and custom forms.</span>
+            </div>
+            <div class="process-item">
+              <strong>Automobile Parts</strong>
+              <span>Machining and development support for automotive and performance use cases.</span>
+            </div>
+            <div class="process-item">
+              <strong>Aerospace & Defense</strong>
+              <span>Focused manufacturing assistance for complex, high-expectation sectors.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band quality" id="quality">
+      <div class="wrap quality-layout">
+        <div class="quality-panel reveal">
+          <div>
+            <div class="eyebrow"><span class="slashes" aria-hidden="true"></span> Inspection Mindset</div>
+            <h2>Quality Built Into Every Setup</h2>
+            <p>Each job is approached through drawing clarity, practical tolerance planning, machine setup control, and finishing checks before dispatch.</p>
+          </div>
+          <div class="cert-line" aria-label="Quality focus areas">
+            <span>Drawing Review</span>
+            <span>Process Stability</span>
+            <span>Final Verification</span>
+          </div>
+        </div>
+        <div class="quality-steps">
+          <article class="quality-step reveal">
+            <small>01</small>
+            <strong>Requirement Study</strong>
+            <span>Part geometry, material, quantity, finish, and usage expectations are reviewed before machining begins.</span>
+          </article>
+          <article class="quality-step reveal">
+            <small>02</small>
+            <strong>Setup Planning</strong>
+            <span>Fixtures, holding strategy, tool paths, and sequence are selected to protect accuracy and repeatability.</span>
+          </article>
+          <article class="quality-step reveal">
+            <small>03</small>
+            <strong>Controlled Machining</strong>
+            <span>Critical areas are handled with stable feeds, clean references, and attention to dimensional consistency.</span>
+          </article>
+          <article class="quality-step reveal">
+            <small>04</small>
+            <strong>Dispatch Check</strong>
+            <span>Components are checked, cleaned, and prepared for delivery with a zero-defect working attitude.</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band sectors" id="sectors">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Sectors We Work In</h2>
+          <p>Industrial capability presented across the sectors shown in your reference boards, rebuilt here with clean website structure.</p>
+        </div>
+        <div class="sector-grid">
+          <article class="sector sector-aero" style="--base:#1f3b47; --glow:rgba(12, 111, 142, .52); --charge:86%;">
+            <span class="meter" aria-hidden="true"></span>
+            <svg class="sector-drawing" viewBox="0 0 180 120" aria-hidden="true">
+              <path d="M90 18 L112 70 L164 92 L112 96 L92 82 L72 96 L18 92 L68 70 Z"></path>
+              <path class="accent" d="M90 18 L90 82"></path>
+              <path d="M75 76 L54 104 M105 76 L126 104"></path>
+              <circle cx="90" cy="58" r="5"></circle>
+            </svg>
+            <strong>Aerospace</strong>
+          </article>
+          <article class="sector sector-defense" style="--base:#34282a; --glow:rgba(239, 52, 52, .42); --charge:79%;">
+            <span class="meter" aria-hidden="true"></span>
+            <svg class="sector-drawing" viewBox="0 0 180 120" aria-hidden="true">
+              <path d="M22 78 H128 L154 66 H166"></path>
+              <path d="M38 78 L52 50 H112 L136 66"></path>
+              <path d="M66 50 L76 34 H112 L122 50"></path>
+              <path class="accent" d="M102 42 L158 28"></path>
+              <path d="M34 84 H132 C140 84 146 90 146 98 H24 C24 90 28 84 34 84 Z"></path>
+              <circle cx="48" cy="98" r="7"></circle>
+              <circle cx="72" cy="98" r="7"></circle>
+              <circle cx="96" cy="98" r="7"></circle>
+              <circle cx="120" cy="98" r="7"></circle>
+            </svg>
+            <strong>Defense</strong>
+          </article>
+          <article class="sector sector-auto" style="--base:#27333c; --glow:rgba(223, 245, 255, .28); --charge:92%;">
+            <span class="meter" aria-hidden="true"></span>
+            <svg class="sector-drawing" viewBox="0 0 180 120" aria-hidden="true">
+              <path d="M12 76 H44 L62 64 H92 L108 45 L132 64 H156 L170 76"></path>
+              <path d="M44 76 L60 88 H130 L150 76"></path>
+              <path class="accent" d="M82 64 L105 34 L132 64"></path>
+              <path d="M18 66 H42 L48 72 M138 72 L150 66 H170"></path>
+              <path d="M70 64 L60 88 M124 64 L132 88"></path>
+              <path d="M90 55 H118 M96 45 H110"></path>
+              <path d="M24 82 H42 M148 82 H166"></path>
+              <circle cx="54" cy="90" r="12"></circle>
+              <circle cx="136" cy="90" r="12"></circle>
+              <circle cx="54" cy="90" r="4"></circle>
+              <circle cx="136" cy="90" r="4"></circle>
+            </svg>
+            <strong>Automobile</strong>
+          </article>
+          <article class="sector sector-dev" style="--base:#1f2f29; --glow:rgba(12, 111, 142, .38); --charge:71%;">
+            <span class="meter" aria-hidden="true"></span>
+            <svg class="sector-drawing" viewBox="0 0 180 120" aria-hidden="true">
+              <path d="M34 22 H108 L128 42 V102 H34 Z"></path>
+              <path d="M108 22 V42 H128"></path>
+              <path class="accent" d="M48 78 C58 48 82 50 90 68 C98 86 110 78 118 62"></path>
+              <path d="M48 42 H94 M48 55 H82 M48 92 H74"></path>
+              <circle cx="50" cy="78" r="3"></circle>
+              <circle cx="90" cy="68" r="3"></circle>
+              <circle cx="118" cy="62" r="3"></circle>
+              <path d="M136 62 L158 84 M158 62 L136 84"></path>
+              <path d="M147 55 V47 M147 99 V91 M125 77 H117 M177 77 H169 M131 61 L125 55 M163 93 L169 99 M163 61 L169 55 M131 93 L125 99"></path>
+              <circle cx="147" cy="77" r="16"></circle>
+            </svg>
+            <strong>Development</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="wrap">
+        <div class="cta-box">
+          <div class="eyebrow"><span class="slashes" aria-hidden="true"></span> Place Your Order</div>
+          <h2>Build The Future Together</h2>
+          <p>Share your drawings, sample part, batch requirement, or single-piece development need. The team can review the machining path and respond with a practical next step.</p>
+          <div class="actions">
+            <a class="button primary" href="mailto:swdmevolution@gmail.com">Email Us</a>
+            <a class="button secondary call-now" href="tel:+917769882075" data-call-number="+917769882075" aria-label="Call SW-DM Evolution at +91 7769882075">Call Now</a>
+          </div>
+          <div class="contact-highlights">
+            <a class="contact-tile reveal" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=swdmevolution@gmail.com&amp;su=Inquiry%20%E2%80%93%20Design%20Development&amp;body=Hello%20SW-DM%20EVOLUTION%20Team%2C%0D%0A%0D%0AI%20would%20like%20to%20inquire%20about%20Design%20Development%20services.%0D%0A%0D%0ACompany%3A%0D%0AContact%20Person%3A%0D%0APhone%3A%0D%0ARequirement%3A%0D%0A%0D%0ARegards%2C" target="_blank" rel="noopener">
+              <strong>Design Development</strong>
+              <span>CAD-CAM / Product Development / Design / Reverse Engineering Support.</span>
+              <small>Click to Send Inquiry</small>
+            </a>
+            <a class="contact-tile reveal" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=swdmevolution@gmail.com&amp;su=Inquiry%20%E2%80%93%20CNC%20Machining&amp;body=Hello%20SW-DM%20EVOLUTION%20Team%2C%0D%0A%0D%0AI%20would%20like%20to%20inquire%20about%20CNC%20Machining%20services.%0D%0A%0D%0AMaterial%3A%0D%0AQuantity%3A%0D%0ADrawing%20Available%3A%20Yes%2FNo%0D%0ARequired%20Delivery%3A%0D%0AAdditional%20Details%3A%0D%0A%0D%0ARegards%2C" target="_blank" rel="noopener">
+              <strong>Machining</strong>
+              <span>Single Piece / Batch Qty / Custom Parts.</span>
+              <small>Click to Send Inquiry</small>
+            </a>
+            <a class="contact-tile reveal" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=swdmevolution@gmail.com&amp;su=Inquiry%20%E2%80%93%20Die%20%26%20Pattern%20Development&amp;body=Hello%20SW-DM%20EVOLUTION%20Team%2C%0D%0A%0D%0AI%20would%20like%20to%20inquire%20about%20Die%20%26%20Pattern%20Development%20services.%0D%0A%0D%0AProject%20Details%3A%0D%0AMaterial%3A%0D%0AQuantity%3A%0D%0ATimeline%3A%0D%0A%0D%0ARegards%2C" target="_blank" rel="noopener">
+              <strong>Die &amp; Pattern</strong>
+              <span>Die / Pattern / Mould / Form Development.</span>
+              <small>Click to Send Inquiry</small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <strong>SW-DM Evolution</strong>
+        <p>Precision machining and development partner for industrial components.</p>
+      </div>
+      <div>
+        <strong>Location</strong>
+        <p>H-1/1-L, Menon Piston Chouck, Kupwad MIDC, Sangli, Maharashtra, India 416-436</p>
+      </div>
+      <div>
+        <strong>Contact</strong>
+        <p>+91 7769882075<br>swdmevolution@gmail.com</p>
+      </div>
+      <div>
+        <strong>Focus</strong>
+        <p>Design, development, machining, dies, patterns, moulds, and precision parts.</p>
+      </div>
+    </div>
+    <div class="wrap footer-gallery-access">
+      <img class="footer-client-logo" src="assets/main-logo-hd.png" alt="SW-DM Evolution logo">
+      <div class="footer-client-copy">
+        <strong>Client List...</strong>
+        <p>We keep every client and development project confidential, so you can work with us on highly secure and unrevealed project work with complete trust.</p>
+      </div>
+      <button class="button secondary gallery-open" type="button" aria-controls="sampleGallery">
+        <span>Design Development Samples</span>
+      </button>
+    </div>
+  </footer>
+  <div class="sample-gallery-modal" id="sampleGallery" role="dialog" aria-modal="true" aria-labelledby="sampleGalleryTitle" aria-hidden="true" hidden>
+    <div class="sample-gallery-backdrop" data-gallery-close></div>
+    <div class="sample-gallery-panel">
+      <button class="gallery-close" type="button" aria-label="Close sample parts gallery" data-gallery-close>&times;</button>
+      <div class="section-head gallery-head">
+        <div>
+          <div class="eyebrow"><span class="slashes" aria-hidden="true"></span> Hidden Gallery</div>
+          <h2 id="sampleGalleryTitle">Design Development Samples</h2>
+        </div>
+      </div>
+      <div class="sample-gallery-grid" aria-label="Reserved sample photo positions">
+        <figure class="gallery-slot has-image">
+          <button class="gallery-zoom" type="button" data-zoom-src="assets/gallery/haas-vf2yt-modeling-crop.jpg" data-zoom-alt="HAAS VF2YT modeling">
+            <img src="assets/gallery/haas-vf2yt-modeling-crop.jpg" alt="HAAS VF2YT modeling">
+          </button>
+          <figcaption>Modeling</figcaption>
+        </figure>
+        <figure class="gallery-slot has-image">
+          <button class="gallery-zoom" type="button" data-zoom-src="assets/gallery/assembly-design-check-ramer.jpg" data-zoom-alt="Assembly design with rendering">
+            <img src="assets/gallery/assembly-design-check-ramer.jpg" alt="Assembly design with rendering">
+          </button>
+          <figcaption>Assembly Design With Rendering</figcaption>
+        </figure>
+        <figure class="gallery-slot has-image">
+          <button class="gallery-zoom" type="button" data-zoom-src="assets/gallery/prototype-render.jpg" data-zoom-alt="Prototype render">
+            <img src="assets/gallery/prototype-render.jpg" alt="Prototype render">
+          </button>
+          <figcaption>Prototype</figcaption>
+        </figure>
+        <figure class="gallery-slot has-image portrait-slot">
+          <button class="gallery-zoom" type="button" data-zoom-src="assets/gallery/machining-sample-slot-04.jpg" data-zoom-alt="Precision CNC machining">
+            <img src="assets/gallery/machining-sample-slot-04.jpg" alt="Precision CNC machining">
+          </button>
+          <figcaption>Precision CNC Machining</figcaption>
+        </figure>
+        <figure class="gallery-slot has-image portrait-slot">
+          <button class="gallery-zoom" type="button" data-zoom-src="assets/gallery/precision-grinding-slot-05.jpg" data-zoom-alt="Extreme hard part operation">
+            <img src="assets/gallery/precision-grinding-slot-05.jpg" alt="Extreme hard part operation">
+          </button>
+          <figcaption>Extreme Hard Part Operation</figcaption>
+        </figure>
+        <figure class="gallery-slot has-image portrait-slot">
+          <button class="gallery-zoom" type="button" data-zoom-src="assets/gallery/deep-hole-drilling-slot-06.jpg" data-zoom-alt="Deep hole drilling 3.5mm x 176 deep">
+            <img src="assets/gallery/deep-hole-drilling-slot-06.jpg" alt="Deep hole drilling 3.5mm x 176 deep">
+          </button>
+          <figcaption>Deep Hole Drilling<br>3.5mm x 176 Deep</figcaption>
+        </figure>
+      </div>
+      <div class="image-zoom-modal" id="imageZoom" aria-hidden="true" hidden>
+        <div class="image-zoom-backdrop" data-zoom-close></div>
+        <div class="image-zoom-panel">
+          <button class="image-zoom-close" type="button" aria-label="Close enlarged image" data-zoom-close>&times;</button>
+          <img src="" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const experienceYears = document.querySelector("#experienceYears");
+
+    if (experienceYears) {
+      const startYear = Number(experienceYears.dataset.startYear || 2004);
+      const currentYear = new Date().getFullYear();
+      experienceYears.textContent = `${Math.max(0, currentYear - startYear)}+`;
+    }
+
+    const inquiryLinks = document.querySelectorAll(".contact-tile[href*='mail.google.com/mail']");
+    const useDeviceMail = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.matchMedia("(max-width: 768px)").matches;
+
+    function gmailComposeToMailto(href) {
+      const url = new URL(href);
+      const to = url.searchParams.get("to") || "swdmevolution@gmail.com";
+      const subject = url.searchParams.get("su") || "";
+      const body = url.searchParams.get("body") || "";
+      return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    if (useDeviceMail) {
+      inquiryLinks.forEach((link) => {
+        link.href = gmailComposeToMailto(link.href);
+        link.removeAttribute("target");
+        link.removeAttribute("rel");
+      });
+    }
+
+    document.querySelectorAll("[data-call-number]").forEach((link) => {
+      link.addEventListener("click", () => {
+        link.href = `tel:${link.dataset.callNumber}`;
+      });
+    });
+
+    const sampleGallery = document.querySelector("#sampleGallery");
+    const galleryOpen = document.querySelector(".gallery-open");
+    const galleryCloseControls = document.querySelectorAll("[data-gallery-close]");
+    const imageZoom = document.querySelector("#imageZoom");
+    const imageZoomImage = imageZoom?.querySelector("img");
+    const imageZoomTriggers = document.querySelectorAll("[data-zoom-src]");
+    const imageZoomCloseControls = document.querySelectorAll("[data-zoom-close]");
+
+    function openSampleGallery() {
+      if (!sampleGallery) return;
+      sampleGallery.hidden = false;
+      sampleGallery.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      sampleGallery.querySelector(".gallery-close")?.focus();
+    }
+
+    function closeSampleGallery() {
+      if (!sampleGallery || sampleGallery.hidden) return;
+      sampleGallery.hidden = true;
+      sampleGallery.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      galleryOpen?.focus();
+    }
+
+    galleryOpen?.addEventListener("click", openSampleGallery);
+    galleryCloseControls.forEach((control) => control.addEventListener("click", closeSampleGallery));
+
+    function openImageZoom(trigger) {
+      if (!imageZoom || !imageZoomImage) return;
+      imageZoomImage.src = trigger.dataset.zoomSrc || "";
+      imageZoomImage.alt = trigger.dataset.zoomAlt || "";
+      imageZoom.hidden = false;
+      imageZoom.setAttribute("aria-hidden", "false");
+      imageZoom.querySelector(".image-zoom-close")?.focus();
+    }
+
+    function closeImageZoom() {
+      if (!imageZoom || imageZoom.hidden) return;
+      imageZoom.hidden = true;
+      imageZoom.setAttribute("aria-hidden", "true");
+      imageZoomImage.src = "";
+    }
+
+    imageZoomTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => openImageZoom(trigger));
+    });
+    imageZoomCloseControls.forEach((control) => control.addEventListener("click", closeImageZoom));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        if (imageZoom && !imageZoom.hidden) {
+          closeImageZoom();
+          return;
+        }
+        closeSampleGallery();
+      }
+    });
+
+    const counter = document.querySelector("#partsCounter");
+
+    function runCounter() {
+      if (!counter) return;
+
+      const target = Number(counter.dataset.target || 5000);
+      const duration = 1900;
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(eased * target);
+        counter.textContent = `${value.toLocaleString("en-IN")}+`;
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          counter.textContent = `${target.toLocaleString("en-IN")}+`;
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    if ("IntersectionObserver" in window && counter) {
+      const counterObserver = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          runCounter();
+          counterObserver.disconnect();
+        }
+      }, { threshold: .45 });
+      counterObserver.observe(counter);
+    } else {
+      runCounter();
+    }
+
+    const revealItems = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window && revealItems.length) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .16, rootMargin: "0px 0px -40px" });
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+    }
+  </script>
+</body>
+</html>

@@ -251,7 +251,9 @@
     .brand-logo-slot {
       min-height: 104px;
       display: grid;
+      gap: 10px;
       place-items: center;
+      align-content: center;
       border: 1px dashed rgba(31, 197, 255, .5);
       background: rgba(31, 197, 255, .035);
       color: rgba(223, 247, 255, .7);
@@ -279,13 +281,18 @@
     }
 
     .since-badge {
+      display: block;
       width: fit-content;
+      margin-top: 0;
       padding: 6px 12px;
       border: 1px solid rgba(31, 197, 255, .48);
-      border-left: 4px solid var(--red);
+      border-left: 4px solid rgba(31, 197, 255, .72);
       background: rgba(31, 197, 255, .06);
       color: #e8f8ff;
+      font-size: 10px;
+      font-weight: 950;
       letter-spacing: .08em;
+      text-transform: uppercase;
       box-shadow: 0 0 18px rgba(31, 197, 255, .13);
     }
 
@@ -294,7 +301,7 @@
       max-width: 100%;
       margin-top: 12px;
       padding: 8px 10px;
-      border-left: 3px solid rgba(239, 52, 52, .9);
+      border-left: 3px solid rgba(31, 197, 255, .72);
       background: rgba(255, 255, 255, .04);
       color: #f4f7f9;
       font-size: clamp(13px, 1.5vw, 20px);
@@ -383,7 +390,7 @@
   <main class="hero">
     <div class="wrap">
       <div class="eyebrow">Legacy of Excellence</div>
-      <h1>Secure Engineering. Proven Precision.</h1>
+      <h1>Secure<br>Engineering.<br>Proven Precision.</h1>
       <p class="lead">A focused legacy built on confidential project support, design development, CNC machining, die-pattern work, and precision part execution for demanding industrial requirements.</p>
 
       <div class="legacy-grid">
@@ -391,10 +398,12 @@
           <div class="brand-stack" aria-label="Brand journey list">
             <div class="brand-panel">
               <div class="brand-card">
-                <div class="brand-logo-slot">Logo Section</div>
+                <div class="brand-logo-slot">
+                  <span>Logo Section</span>
+                  <small class="since-badge">Since 2004</small>
+                </div>
                 <div class="brand-info">
                   <strong>SWAPNA INDUSTRIES</strong>
-                  <small class="since-badge">Since 2004</small>
                   <b>MR ARUN GANGADHAR AWATI</b>
                   <small class="expertise-line">Work Expertise Fettling</small>
                 </div>
@@ -402,10 +411,12 @@
             </div>
             <div class="brand-panel">
               <div class="brand-card">
-                <div class="brand-logo-slot">Logo Section</div>
+                <div class="brand-logo-slot">
+                  <span>Logo Section</span>
+                  <small class="since-badge">Since</small>
+                </div>
                 <div class="brand-info">
                   <strong>Brand Name</strong>
-                  <small class="since-badge">Since</small>
                   <b>Founder Name</b>
                   <small class="expertise-line">Work Expertise</small>
                 </div>
@@ -413,10 +424,12 @@
             </div>
             <div class="brand-panel">
               <div class="brand-card">
-                <div class="brand-logo-slot">Logo Section</div>
+                <div class="brand-logo-slot">
+                  <span>Logo Section</span>
+                  <small class="since-badge">Since</small>
+                </div>
                 <div class="brand-info">
                   <strong>Brand Name</strong>
-                  <small class="since-badge">Since</small>
                   <b>Founder Name</b>
                   <small class="expertise-line">Work Expertise</small>
                 </div>

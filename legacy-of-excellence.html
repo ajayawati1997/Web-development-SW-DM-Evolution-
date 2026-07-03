@@ -278,14 +278,35 @@
       text-transform: uppercase;
     }
 
+    .since-badge {
+      width: fit-content;
+      padding: 6px 12px;
+      border: 1px solid rgba(31, 197, 255, .48);
+      border-left: 4px solid var(--red);
+      background: rgba(31, 197, 255, .06);
+      color: #e8f8ff;
+      letter-spacing: .08em;
+      box-shadow: 0 0 18px rgba(31, 197, 255, .13);
+    }
+
     .brand-info b {
-      display: block;
-      margin-top: 10px;
+      display: inline-block;
+      max-width: 100%;
+      margin-top: 12px;
+      padding: 8px 10px;
+      border-left: 3px solid rgba(239, 52, 52, .9);
+      background: rgba(255, 255, 255, .04);
       color: #f4f7f9;
-      font-size: clamp(17px, 2.1vw, 26px);
+      font-size: clamp(13px, 1.5vw, 20px);
       line-height: 1;
+      letter-spacing: .03em;
       text-transform: uppercase;
       white-space: nowrap;
+    }
+
+    .expertise-line {
+      color: #9ca7ad;
+      letter-spacing: .04em;
     }
 
     .points {
@@ -373,9 +394,9 @@
                 <div class="brand-logo-slot">Logo Section</div>
                 <div class="brand-info">
                   <strong>SWAPNA INDUSTRY</strong>
-                  <small>Since 2004</small>
+                  <small class="since-badge">Since 2004</small>
                   <b>MR ARUN GANGADHAR AWATI</b>
-                  <small>Work Expertise Fettling</small>
+                  <small class="expertise-line">Work Expertise Fettling</small>
                 </div>
               </div>
             </div>
@@ -384,9 +405,9 @@
                 <div class="brand-logo-slot">Logo Section</div>
                 <div class="brand-info">
                   <strong>Brand Name</strong>
-                  <small>Since</small>
+                  <small class="since-badge">Since</small>
                   <b>Founder Name</b>
-                  <small>Work Expertise</small>
+                  <small class="expertise-line">Work Expertise</small>
                 </div>
               </div>
             </div>
@@ -395,9 +416,9 @@
                 <div class="brand-logo-slot">Logo Section</div>
                 <div class="brand-info">
                   <strong>Brand Name</strong>
-                  <small>Since</small>
+                  <small class="since-badge">Since</small>
                   <b>Founder Name</b>
-                  <small>Work Expertise</small>
+                  <small class="expertise-line">Work Expertise</small>
                 </div>
               </div>
             </div>

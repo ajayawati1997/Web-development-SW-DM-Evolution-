@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legacy of Excellence - SW-DM Evolution</title>
+  <style>
+    :root {
+      --black: #050607;
+      --dark: #111417;
+      --panel: #171b1f;
+      --silver: #e6edf1;
+      --muted: #9aa4aa;
+      --red: #ef3434;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(125deg, rgba(239, 52, 52, .12), transparent 34%),
+        radial-gradient(circle at 78% 20%, rgba(255, 255, 255, .1), transparent 26%),
+        linear-gradient(180deg, #020303, #101316 48%, #060708);
+      color: var(--silver);
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, .9), transparent 84%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(5, 6, 7, .92);
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mark {
+      width: 94px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: linear-gradient(145deg, #dcecf4, #0b5d7d 46%, #f8fbfc 78%);
+      color: #020405;
+      font-size: 30px;
+      font-weight: 950;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, .34), 0 0 24px rgba(31, 197, 255, .12);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: clamp(20px, 2.6vw, 32px);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .back {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 16px;
+      border: 1px solid rgba(255, 255, 255, .4);
+      border-radius: 4px;
+      color: white;
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .back:hover {
+      transform: translateY(-2px);
+      border-color: rgba(239, 52, 52, .7);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, .26), 0 0 18px rgba(239, 52, 52, .14);
+    }
+
+    .hero {
+      min-height: calc(100vh - 92px);
+      display: grid;
+      align-items: center;
+      padding: 72px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -12vw;
+      bottom: 6vh;
+      width: min(54vw, 620px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, transparent 42%, rgba(239, 52, 52, .18) 43%, transparent 45%),
+        conic-gradient(from 90deg, transparent, rgba(239, 52, 52, .26), transparent 32%);
+      filter: blur(.2px);
+      opacity: .68;
+      animation: rotateRing 18s linear infinite;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      color: #f4f7f9;
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 14px;
+      background: linear-gradient(90deg, var(--red), rgba(239, 52, 52, .18));
+      clip-path: polygon(18% 0, 100% 0, 82% 100%, 0 100%);
+      box-shadow: 0 0 18px rgba(239, 52, 52, .26);
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 26px 0 18px;
+      font-size: clamp(46px, 8vw, 100px);
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .lead {
+      max-width: 650px;
+      color: #b9c2c8;
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.65;
+    }
+
+    .legacy-grid {
+      position: relative;
+      z-index: 1;
+      margin-top: 42px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .metric {
+      min-height: 230px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      background: linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .025));
+      box-shadow: 0 20px 44px rgba(0, 0, 0, .28);
+    }
+
+    .metric strong {
+      display: block;
+      color: white;
+      font-size: clamp(58px, 9vw, 112px);
+      line-height: .88;
+      text-shadow: 0 0 28px rgba(239, 52, 52, .24);
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .points {
+      display: grid;
+      gap: 14px;
+    }
+
+    .point {
+      padding: 20px;
+      border-left: 4px solid var(--red);
+      background: rgba(255, 255, 255, .055);
+    }
+
+    .point strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    .point p {
+      margin: 0;
+      color: #aeb8bd;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    @keyframes rotateRing {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 780px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .legacy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 54px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="wrap nav" aria-label="Legacy navigation">
+      <a class="brand" href="index.html">
+        <span class="mark">SW</span>
+        <span>
+          <strong>SW-DM Evolution</strong>
+          <span>Legacy Since 2004</span>
+        </span>
+      </a>
+      <a class="back" href="index.html">Back to Website</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Legacy of Excellence</div>
+      <h1>Secure Engineering. Proven Precision.</h1>
+      <p class="lead">A focused legacy built on confidential project support, design development, CNC machining, die-pattern work, and precision part execution for demanding industrial requirements.</p>
+
+      <div class="legacy-grid">
+        <section class="metric" aria-label="Client legacy count">
+          <strong><span id="legacyCounter" data-target="150">0</span>+</strong>
+          <span>Trusted client and project relationships</span>
+        </section>
+        <section class="points" aria-label="Legacy highlights">
+          <div class="point">
+            <strong>Confidential Work Culture</strong>
+            <p>Client lists, drawings, development details, and project information are handled with strict privacy.</p>
+          </div>
+          <div class="point">
+            <strong>Design to Machining Support</strong>
+            <p>Concept planning, development, machining, and inspection are aligned for practical manufacturing outcomes.</p>
+          </div>
+          <div class="point">
+            <strong>Zero Defect Focus</strong>
+            <p>Every work package is approached with careful setup planning, process control, and finish-quality discipline.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const legacyCounter = document.querySelector("#legacyCounter");
+    if (legacyCounter) {
+      const target = Number(legacyCounter.dataset.target || 150);
+      const duration = 1500;
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        legacyCounter.textContent = Math.floor(eased * target).toLocaleString("en-IN");
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          legacyCounter.textContent = target.toLocaleString("en-IN");
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+  </script>
+</body>
+</html>

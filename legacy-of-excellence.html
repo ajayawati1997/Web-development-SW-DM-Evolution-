@@ -216,46 +216,39 @@
       text-transform: uppercase;
     }
 
-    .brand-tabs {
+    .brand-stack {
       margin-top: 24px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .brand-tab {
-      min-height: 38px;
-      border: 1px solid rgba(31, 197, 255, .24);
-      border-radius: 4px;
-      background: rgba(255, 255, 255, .04);
-      color: #c9d4da;
-      font: inherit;
-      font-size: 11px;
-      font-weight: 950;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
-    }
-
-    .brand-tab[aria-selected="true"],
-    .brand-tab:hover,
-    .brand-tab:focus-visible {
-      border-color: rgba(31, 197, 255, .9);
-      background: rgba(31, 197, 255, .08);
-      color: #f4fbff;
-      box-shadow: 0 0 18px rgba(31, 197, 255, .22);
-      outline: none;
+      gap: 12px;
     }
 
     .brand-panel {
-      margin-top: 14px;
-      padding: 18px;
-      border: 1px solid rgba(255, 255, 255, .1);
+      padding: 16px;
+      border: 1px solid rgba(31, 197, 255, .24);
+      border-radius: 4px;
       background: rgba(0, 0, 0, .18);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .03), 0 0 16px rgba(31, 197, 255, .08);
     }
 
-    .brand-panel[hidden] {
-      display: none;
+    .brand-panel:first-child {
+      border-color: rgba(31, 197, 255, .72);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04), 0 0 20px rgba(31, 197, 255, .2);
+    }
+
+    .brand-tab-title {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      margin-bottom: 12px;
+      padding: 0 10px;
+      border: 1px solid rgba(31, 197, 255, .46);
+      border-radius: 4px;
+      background: rgba(31, 197, 255, .055);
+      color: #dff7ff;
+      font-size: 11px;
+      font-weight: 950;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(31, 197, 255, .36);
     }
 
     .brand-card {
@@ -385,41 +378,41 @@
         <section class="metric" aria-label="Client legacy count">
           <strong><span id="legacyCounter" data-target="150">0</span>+</strong>
           <span>Trusted client and project relationships</span>
-          <div class="brand-tabs" role="tablist" aria-label="Brand journey tabs">
-            <button class="brand-tab" id="brandTab1" type="button" role="tab" aria-selected="true" aria-controls="brandPanel1">Swapna Industry</button>
-            <button class="brand-tab" id="brandTab2" type="button" role="tab" aria-selected="false" aria-controls="brandPanel2">Brand 2</button>
-            <button class="brand-tab" id="brandTab3" type="button" role="tab" aria-selected="false" aria-controls="brandPanel3">Brand 3</button>
-          </div>
-          <div class="brand-panel" id="brandPanel1" role="tabpanel" aria-labelledby="brandTab1">
-            <div class="brand-card">
-              <div class="brand-logo-slot">Logo Section</div>
-              <div class="brand-info">
-                <strong>SWAPNA INDUSTRY</strong>
-                <small>Since 2004</small>
-                <b>MR ARUN GANGADHAR AWATI</b>
-                <small>Work Expertise Fettling</small>
+          <div class="brand-stack" aria-label="Brand journey list">
+            <div class="brand-panel">
+              <div class="brand-tab-title">Swapna Industry</div>
+              <div class="brand-card">
+                <div class="brand-logo-slot">Logo Section</div>
+                <div class="brand-info">
+                  <strong>SWAPNA INDUSTRY</strong>
+                  <small>Since 2004</small>
+                  <b>MR ARUN GANGADHAR AWATI</b>
+                  <small>Work Expertise Fettling</small>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="brand-panel" id="brandPanel2" role="tabpanel" aria-labelledby="brandTab2" hidden>
-            <div class="brand-card">
-              <div class="brand-logo-slot">Logo Section</div>
-              <div class="brand-info">
-                <strong>Brand Name</strong>
-                <small>Since</small>
-                <b>Founder Name</b>
-                <small>Work Expertise</small>
+            <div class="brand-panel">
+              <div class="brand-tab-title">Brand 2</div>
+              <div class="brand-card">
+                <div class="brand-logo-slot">Logo Section</div>
+                <div class="brand-info">
+                  <strong>Brand Name</strong>
+                  <small>Since</small>
+                  <b>Founder Name</b>
+                  <small>Work Expertise</small>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="brand-panel" id="brandPanel3" role="tabpanel" aria-labelledby="brandTab3" hidden>
-            <div class="brand-card">
-              <div class="brand-logo-slot">Logo Section</div>
-              <div class="brand-info">
-                <strong>Brand Name</strong>
-                <small>Since</small>
-                <b>Founder Name</b>
-                <small>Work Expertise</small>
+            <div class="brand-panel">
+              <div class="brand-tab-title">Brand 3</div>
+              <div class="brand-card">
+                <div class="brand-logo-slot">Logo Section</div>
+                <div class="brand-info">
+                  <strong>Brand Name</strong>
+                  <small>Since</small>
+                  <b>Founder Name</b>
+                  <small>Work Expertise</small>
+                </div>
               </div>
             </div>
           </div>
@@ -462,18 +455,6 @@
 
       requestAnimationFrame(tick);
     }
-
-    const brandTabs = Array.from(document.querySelectorAll(".brand-tab"));
-    const brandPanels = Array.from(document.querySelectorAll(".brand-panel"));
-
-    brandTabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        brandTabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
-        brandPanels.forEach((panel) => {
-          panel.hidden = panel.id !== tab.getAttribute("aria-controls");
-        });
-      });
-    });
   </script>
 </body>
 </html>

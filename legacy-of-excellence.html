@@ -244,9 +244,9 @@
 
     .brand-card {
       display: grid;
-      grid-template-columns: 96px minmax(0, 1fr);
-      gap: 18px;
-      align-items: center;
+      grid-template-columns: 86px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
     }
 
     .brand-info {
@@ -254,7 +254,8 @@
     }
 
     .brand-logo-slot {
-      min-height: 104px;
+      min-height: 64px;
+      height: 64px;
       display: grid;
       gap: 10px;
       place-items: center;
@@ -268,15 +269,15 @@
     }
 
     .brand-logo-slot.has-logo {
-      padding: 8px;
+      padding: 6px;
     }
 
     .sw-default-logo {
       position: relative;
       display: grid;
       place-items: center;
-      width: 82px;
-      height: 58px;
+      width: 76px;
+      height: 50px;
       color: transparent;
       background:
         linear-gradient(135deg, #f8fdff 0%, #8fe0ff 35%, #12475e 62%, #f0f7fb 100%);
@@ -284,7 +285,7 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
       font-family: Impact, "Arial Black", Arial, Helvetica, sans-serif;
-      font-size: 42px;
+      font-size: 38px;
       font-weight: 950;
       letter-spacing: .02em;
       line-height: 1;
@@ -318,14 +319,16 @@
     }
 
     .brand-logo-img {
-      width: min(82px, 88%);
-      max-height: 62px;
+      width: min(76px, 88%);
+      max-height: 52px;
       object-fit: contain;
       filter: contrast(1.08) saturate(1.08) drop-shadow(0 0 12px rgba(31, 197, 255, .22));
     }
 
     .brand-info strong {
-      display: block;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
       color: #8f989e;
       font-size: clamp(23px, 3.25vw, 40px);
       font-weight: 950;
@@ -437,7 +440,8 @@
       }
 
       .brand-card {
-        grid-template-columns: 1fr;
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 12px;
       }
 
       .brand-panel {
@@ -446,6 +450,16 @@
 
       .brand-info {
         padding-right: 0;
+      }
+
+      .brand-logo-slot,
+      .brand-info strong {
+        min-height: 58px;
+        height: 58px;
+      }
+
+      .brand-info b {
+        white-space: normal;
       }
     }
   </style>

@@ -262,6 +262,17 @@
       text-transform: uppercase;
     }
 
+    .brand-logo-slot.has-logo {
+      padding: 8px;
+    }
+
+    .brand-logo-img {
+      width: min(82px, 88%);
+      max-height: 62px;
+      object-fit: contain;
+      filter: contrast(1.08) saturate(1.08) drop-shadow(0 0 12px rgba(31, 197, 255, .22));
+    }
+
     .brand-info strong {
       display: block;
       color: #8f989e;
@@ -411,8 +422,8 @@
             </div>
             <div class="brand-panel">
               <div class="brand-card">
-                <div class="brand-logo-slot">
-                  <span>Logo Section</span>
+                <div class="brand-logo-slot has-logo">
+                  <img class="brand-logo-img" src="assets/d-mech-brand-logo.png" alt="D-MECH Industry logo">
                   <small class="since-badge">Since 2019</small>
                 </div>
                 <div class="brand-info">

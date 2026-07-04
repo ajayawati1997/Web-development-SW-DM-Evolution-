@@ -267,12 +267,49 @@
     }
 
     .sw-default-logo {
-      color: #d8e5ec;
-      font-size: 34px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 82px;
+      height: 58px;
+      color: transparent;
+      background:
+        linear-gradient(135deg, #f8fdff 0%, #8fe0ff 35%, #12475e 62%, #f0f7fb 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: Impact, "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 42px;
       font-weight: 950;
       letter-spacing: .02em;
       line-height: 1;
-      text-shadow: 0 0 14px rgba(31, 197, 255, .22);
+      -webkit-text-stroke: 1px rgba(239, 250, 255, .3);
+      filter: drop-shadow(0 0 12px rgba(31, 197, 255, .28));
+      transform: skewX(-5deg);
+    }
+
+    .sw-default-logo::before,
+    .sw-default-logo::after {
+      content: "";
+      position: absolute;
+      inset: 5px 0;
+      pointer-events: none;
+    }
+
+    .sw-default-logo::before {
+      background:
+        linear-gradient(120deg, transparent 0 28%, rgba(255, 255, 255, .4) 30%, transparent 34%),
+        linear-gradient(180deg, transparent 0 44%, rgba(31, 197, 255, .18) 48%, transparent 52%);
+      opacity: .8;
+      mix-blend-mode: screen;
+    }
+
+    .sw-default-logo::after {
+      background:
+        repeating-linear-gradient(110deg, transparent 0 7px, rgba(5, 6, 7, .38) 8px 9px),
+        repeating-linear-gradient(0deg, transparent 0 11px, rgba(255, 255, 255, .12) 12px 13px);
+      opacity: .45;
+      mix-blend-mode: overlay;
     }
 
     .brand-logo-img {

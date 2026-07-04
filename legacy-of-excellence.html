@@ -245,7 +245,8 @@
     .brand-card {
       display: grid;
       grid-template-columns: 112px minmax(0, 1fr);
-      gap: 18px;
+      column-gap: 18px;
+      row-gap: 14px;
       align-items: start;
     }
 
@@ -336,12 +337,15 @@
       white-space: nowrap;
     }
 
-    .brand-info .expertise-line {
+    .brand-card > .expertise-line {
+      grid-column: 1 / -1;
+      display: block;
       width: 100%;
-      margin-top: 14px;
+      margin-top: 0;
       padding-top: 12px;
       border-top: 1px solid rgba(150, 158, 164, .46);
       color: #9ca7ad;
+      font-size: 11px;
       font-weight: 950;
       line-height: 1.45;
       letter-spacing: .025em;
@@ -461,8 +465,8 @@
                 <div class="brand-info">
                   <strong>SWAPNA INDUSTRIES</strong>
                   <b>Founder: MR ARUN GANGADHAR AWATI</b>
-                  <small class="expertise-line">Established a strong reputation in Casting Fettling, delivering reliable quality and craftsmanship to the manufacturing industry.</small>
                 </div>
+                <small class="expertise-line">Established a strong reputation in Casting Fettling, delivering reliable quality and craftsmanship to the manufacturing industry.</small>
               </div>
             </div>
             <div class="brand-panel">
@@ -474,8 +478,8 @@
                 <div class="brand-info">
                   <strong>D-MECH INDUSTRY</strong>
                   <b>Founder: MR. AJAY ARUN AWATI</b>
-                  <small class="expertise-line">Expanded into Product Development and Precision Machining, providing innovative engineering solutions with a focus on accuracy, efficiency, and continuous improvement.</small>
                 </div>
+                <small class="expertise-line">Expanded into Product Development and Precision Machining, providing innovative engineering solutions with a focus on accuracy, efficiency, and continuous improvement.</small>
               </div>
             </div>
             <div class="brand-panel">
@@ -487,8 +491,8 @@
                 <div class="brand-info">
                   <strong>SW-DM EVOLUTION</strong>
                   <b>Founder: MR. AJAY ARUN AWATI</b>
-                  <small class="expertise-line">It brings together the heritage of SW and the innovation of DM under one unified identity. Built on a legacy that began in 2004, we provide complete Design &bull; Development &bull; Manufacturing Solutions transforming concepts into precision-engineered products through modern technology, engineering expertise, and a commitment to Zero Defect Quality.</small>
                 </div>
+                <small class="expertise-line">It brings together the heritage of SW and the innovation of DM under one unified identity. Built on a legacy that began in 2004, we provide complete Design &bull; Development &bull; Manufacturing Solutions transforming concepts into precision-engineered products through modern technology, engineering expertise, and a commitment to Zero Defect Quality.</small>
               </div>
             </div>
           </div>

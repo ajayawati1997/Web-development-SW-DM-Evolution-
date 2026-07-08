@@ -384,9 +384,13 @@
     .points {
       display: grid;
       gap: 14px;
+      align-content: start;
+      justify-items: start;
     }
 
     .point {
+      width: fit-content;
+      max-width: min(100%, 360px);
       padding: 20px;
       border-left: 4px solid var(--red);
       background: rgba(255, 255, 255, .055);

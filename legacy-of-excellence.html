@@ -325,18 +325,19 @@
     .brand-founder {
       grid-column: 1 / -1;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 5px;
       width: min(100%, 620px);
       max-width: 100%;
       margin: 1px auto 0;
-      padding: 10px 18px;
+      padding: 8px 18px 11px;
       border: 1px solid rgba(150, 158, 164, .5);
       border-left: 4px solid rgba(31, 197, 255, .62);
       border-right: 4px solid rgba(31, 197, 255, .34);
       background: linear-gradient(90deg, rgba(255, 255, 255, .035), rgba(31, 197, 255, .085), rgba(255, 255, 255, .03));
       color: #f4f7f9;
-      font-size: clamp(13px, 1.55vw, 20px);
       font-weight: 950;
       line-height: 1.08;
       letter-spacing: .03em;
@@ -344,6 +345,22 @@
       text-transform: uppercase;
       white-space: normal;
       box-shadow: inset 0 0 18px rgba(31, 197, 255, .08), 0 10px 22px rgba(0, 0, 0, .2);
+    }
+
+    .founder-label {
+      display: block;
+      color: #9da7ad;
+      font-size: clamp(9px, .85vw, 11px);
+      line-height: 1;
+      letter-spacing: .18em;
+    }
+
+    .founder-name {
+      display: block;
+      color: #f4f7f9;
+      font-size: clamp(13px, 1.48vw, 19px);
+      line-height: 1.08;
+      letter-spacing: .035em;
     }
 
     .brand-card > .expertise-line {
@@ -440,8 +457,15 @@
       .brand-founder {
         width: 100%;
         padding: 9px 12px;
-        font-size: clamp(11px, 3vw, 14px);
         white-space: normal;
+      }
+
+      .founder-label {
+        font-size: 8.5px;
+      }
+
+      .founder-name {
+        font-size: clamp(11px, 3vw, 14px);
       }
     }
   </style>
@@ -478,7 +502,7 @@
                 <div class="brand-info">
                   <strong>SWAPNA INDUSTRIES</strong>
                 </div>
-                <b class="brand-founder">Founder: MR ARUN GANGADHAR AWATI</b>
+                <b class="brand-founder"><span class="founder-label">Founder</span><span class="founder-name">MR ARUN GANGADHAR AWATI</span></b>
                 <small class="expertise-line">Established a strong reputation in Casting Fettling, delivering reliable quality and craftsmanship to the manufacturing industry.</small>
               </div>
             </div>
@@ -491,7 +515,7 @@
                 <div class="brand-info">
                   <strong>D-MECH INDUSTRY</strong>
                 </div>
-                <b class="brand-founder">Founder: MR. AJAY ARUN AWATI</b>
+                <b class="brand-founder"><span class="founder-label">Founder</span><span class="founder-name">MR. AJAY ARUN AWATI</span></b>
                 <small class="expertise-line">Expanded into Product Development and Precision Machining, providing innovative engineering solutions with a focus on accuracy, efficiency, and continuous improvement.</small>
               </div>
             </div>
@@ -504,7 +528,7 @@
                 <div class="brand-info">
                   <strong>SW-DM EVOLUTION</strong>
                 </div>
-                <b class="brand-founder">Founders: MR. ARUN GANGADHAR AWATI &amp; MR. AJAY ARUN AWATI</b>
+                <b class="brand-founder"><span class="founder-label">Founders</span><span class="founder-name">MR. ARUN GANGADHAR AWATI &amp; MR. AJAY ARUN AWATI</span></b>
                 <small class="expertise-line">Uniting SW heritage and DM innovation for complete Design &bull; Development &bull; Manufacturing solutions with Zero Defect quality.</small>
               </div>
             </div>

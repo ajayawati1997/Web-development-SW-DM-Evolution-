@@ -384,15 +384,9 @@
     .points {
       display: grid;
       gap: 14px;
-      grid-template-rows: repeat(3, minmax(0, 1fr));
-      height: 100%;
     }
 
     .point {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 0;
       padding: 20px;
       border-left: 4px solid var(--red);
       background: rgba(255, 255, 255, .055);
@@ -427,11 +421,6 @@
 
       .legacy-grid {
         grid-template-columns: 1fr;
-      }
-
-      .points {
-        grid-template-rows: none;
-        height: auto;
       }
 
       .hero {

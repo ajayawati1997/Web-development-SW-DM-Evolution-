@@ -366,6 +366,25 @@
       display: block;
     }
 
+    .brand-founder-dual {
+      gap: 1px;
+      padding-top: 7px;
+      padding-bottom: 9px;
+    }
+
+    .brand-founder-dual .founder-name {
+      font-size: clamp(17px, 1.9vw, 24px);
+      line-height: 1.02;
+    }
+
+    .brand-founder-dual .founder-name span + span {
+      margin-top: 2px;
+    }
+
+    .brand-founder-dual .founder-name span {
+      white-space: nowrap;
+    }
+
     .brand-card > .expertise-line {
       grid-column: 1 / -1;
       display: block;
@@ -474,6 +493,10 @@
       .founder-name {
         font-size: clamp(13px, 3.65vw, 17px);
       }
+
+      .brand-founder-dual .founder-name {
+        font-size: clamp(13px, 3.45vw, 16px);
+      }
     }
   </style>
 </head>
@@ -535,7 +558,7 @@
                 <div class="brand-info">
                   <strong>SW-DM EVOLUTION</strong>
                 </div>
-                <b class="brand-founder"><span class="founder-label">Founders</span><span class="founder-name"><span>MR. ARUN GANGADHAR AWATI</span><span>MR. AJAY ARUN AWATI</span></span></b>
+                <b class="brand-founder brand-founder-dual"><span class="founder-label">Founders</span><span class="founder-name"><span>MR. ARUN GANGADHAR AWATI</span><span>MR. AJAY ARUN AWATI</span></span></b>
                 <small class="expertise-line">Uniting SW heritage and DM innovation for complete Design &bull; Development &bull; Manufacturing solutions with Zero Defect quality.</small>
               </div>
             </div>

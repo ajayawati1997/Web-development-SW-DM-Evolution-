@@ -250,14 +250,14 @@
 
     .brand-card {
       display: grid;
-      grid-template-columns: 112px minmax(0, 1fr);
+      grid-template-columns: 112px minmax(0, 1fr) minmax(320px, 42%);
       column-gap: 18px;
       row-gap: 14px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .brand-info {
-      padding-right: 92px;
+      padding-right: 0;
     }
 
     .brand-logo-slot {
@@ -329,18 +329,20 @@
     }
 
     .brand-founder {
-      grid-column: 1 / -1;
+      grid-column: 3;
+      grid-row: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2px;
-      width: min(100%, 620px);
+      gap: 3px;
+      width: 100%;
       max-width: 100%;
-      margin: 1px auto 0;
-      padding: 8px 18px 11px;
+      min-height: 86px;
+      margin: 0;
+      padding: 10px 14px 12px;
       border: 1px solid rgba(150, 158, 164, .62);
-      border-left: 3px solid rgba(150, 158, 164, .82);
+      border-left: 3px solid rgba(239, 52, 52, .82);
       background: rgba(8, 10, 12, .78);
       color: #d7dde1;
       font-weight: 950;
@@ -355,7 +357,7 @@
     .founder-label {
       display: block;
       color: #9da7ad;
-      font-size: clamp(12px, 1.2vw, 17px);
+      font-size: clamp(13px, 1.25vw, 18px);
       line-height: 1;
       letter-spacing: .18em;
     }
@@ -363,8 +365,8 @@
     .founder-name {
       display: block;
       color: #d7dde1;
-      font-size: clamp(22px, 2.45vw, 32px);
-      line-height: 1.04;
+      font-size: clamp(24px, 2.65vw, 36px);
+      line-height: 1.02;
       letter-spacing: .035em;
     }
 
@@ -379,9 +381,10 @@
     }
 
     .brand-founder-dual .founder-name {
-      font-size: clamp(21px, 2.28vw, 30px);
-      line-height: 1.02;
+      font-size: clamp(22px, 2.35vw, 31px);
+      line-height: 1.01;
       width: fit-content;
+      max-width: 100%;
       margin: 0 auto;
       text-align: left;
     }
@@ -534,21 +537,24 @@
       }
 
       .brand-founder {
+        grid-column: 1 / -1;
+        grid-row: auto;
         width: 100%;
+        min-height: auto;
         padding: 9px 12px;
         white-space: normal;
       }
 
       .founder-label {
-        font-size: 11px;
+        font-size: 12px;
       }
 
       .founder-name {
-        font-size: clamp(15px, 4.25vw, 20px);
+        font-size: clamp(17px, 4.8vw, 23px);
       }
 
       .brand-founder-dual .founder-name {
-        font-size: clamp(15px, 4vw, 19px);
+        font-size: clamp(16px, 4.5vw, 22px);
       }
     }
   </style>

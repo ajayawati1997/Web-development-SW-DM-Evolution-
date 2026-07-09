@@ -512,12 +512,13 @@
       }
 
       .brand-card {
-        grid-template-columns: 86px minmax(0, 1fr);
-        gap: 12px;
+        grid-template-columns: 74px minmax(0, 1fr) minmax(124px, 40%);
+        column-gap: 9px;
+        row-gap: 10px;
       }
 
       .brand-panel {
-        padding-top: 48px;
+        padding: 46px 10px 14px;
       }
 
       .brand-info {
@@ -526,8 +527,12 @@
 
       .brand-logo-slot,
       .brand-info strong {
-        min-height: 70px;
-        height: 70px;
+        min-height: 64px;
+        height: 64px;
+      }
+
+      .brand-info strong {
+        font-size: clamp(14px, 4.2vw, 22px);
       }
 
       .brand-logo-img {
@@ -537,24 +542,24 @@
       }
 
       .brand-founder {
-        grid-column: 1 / -1;
-        grid-row: auto;
+        grid-column: 3;
+        grid-row: 1;
         width: 100%;
-        min-height: auto;
-        padding: 9px 12px;
+        min-height: 64px;
+        padding: 7px 8px;
         white-space: normal;
       }
 
       .founder-label {
-        font-size: 12px;
+        font-size: 9px;
       }
 
       .founder-name {
-        font-size: clamp(17px, 4.8vw, 23px);
+        font-size: clamp(10px, 3vw, 16px);
       }
 
       .brand-founder-dual .founder-name {
-        font-size: clamp(16px, 4.5vw, 22px);
+        font-size: clamp(9px, 2.75vw, 14px);
       }
     }
   </style>

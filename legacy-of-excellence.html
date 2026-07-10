@@ -601,6 +601,75 @@
         padding-top: 8px;
       }
     }
+    @media (max-width: 620px) {
+      .legacy-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .metric {
+        padding: 12px;
+      }
+
+      .brand-stack {
+        gap: 12px;
+      }
+
+      .brand-card {
+        grid-template-columns: 64px minmax(0, 1fr);
+        column-gap: 10px;
+      }
+
+      .brand-panel {
+        padding: 40px 10px 12px;
+      }
+
+      .brand-logo-slot,
+      .brand-info strong {
+        min-height: 58px;
+        height: 58px;
+      }
+
+      .brand-info strong {
+        font-size: clamp(15px, 5vw, 20px);
+      }
+
+      .brand-founder {
+        width: 100%;
+        padding: 8px 10px;
+      }
+
+      .founder-label {
+        font-size: 12px;
+      }
+
+      .founder-name,
+      .brand-founder-dual .founder-name {
+        font-size: clamp(16px, 5vw, 20px);
+      }
+
+      .brand-card > .expertise-line {
+        font-size: 10px;
+        line-height: 1.35;
+      }
+
+      .points {
+        gap: 10px;
+      }
+
+      .point {
+        padding: 14px 12px;
+      }
+
+      .point strong {
+        font-size: 13px;
+      }
+
+      .point p {
+        font-size: 12px;
+        line-height: 1.45;
+      }
+    }
   </style>
 </head>
 <body>

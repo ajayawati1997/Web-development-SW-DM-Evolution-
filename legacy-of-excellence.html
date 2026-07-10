@@ -478,9 +478,14 @@
       }
 
       .legacy-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1.1fr) minmax(180px, .9fr);
         margin-top: 26px;
-        gap: 16px;
+        gap: 14px;
+      }
+
+      .point {
+        width: 100%;
+        max-width: 100%;
       }
 
       .brand-stack {
@@ -500,7 +505,33 @@
       }
 
       .legacy-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1.12fr) minmax(118px, .88fr);
+        gap: 8px;
+      }
+
+      .metric {
+        padding: 10px;
+      }
+
+      .points {
+        gap: 8px;
+      }
+
+      .point {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px 10px;
+        border-left-width: 3px;
+      }
+
+      .point strong {
+        font-size: 11px;
+        margin-bottom: 5px;
+      }
+
+      .point p {
+        font-size: 10px;
+        line-height: 1.35;
       }
 
       .hero {
@@ -513,13 +544,13 @@
       }
 
       .brand-card {
-        grid-template-columns: 74px minmax(0, 1fr);
-        column-gap: 9px;
-        row-gap: 10px;
+        grid-template-columns: 58px minmax(0, 1fr);
+        column-gap: 8px;
+        row-gap: 8px;
       }
 
       .brand-panel {
-        padding: 46px 10px 14px;
+        padding: 36px 8px 10px;
       }
 
       .brand-info {
@@ -528,12 +559,12 @@
 
       .brand-logo-slot,
       .brand-info strong {
-        min-height: 64px;
-        height: 64px;
+        min-height: 52px;
+        height: 52px;
       }
 
       .brand-info strong {
-        font-size: clamp(14px, 4.2vw, 22px);
+        font-size: clamp(12px, 3.3vw, 17px);
       }
 
       .brand-logo-img {
@@ -548,20 +579,26 @@
         justify-self: center;
         width: min(100%, 420px);
         min-height: auto;
-        padding: 8px 10px;
+        padding: 7px 8px;
         white-space: normal;
       }
 
       .founder-label {
-        font-size: clamp(10px, 2.5vw, 14px);
+        font-size: clamp(10px, 2.4vw, 13px);
       }
 
       .founder-name {
-        font-size: clamp(15px, 4vw, 20px);
+        font-size: clamp(14px, 3.7vw, 19px);
       }
 
       .brand-founder-dual .founder-name {
-        font-size: clamp(13px, 3.5vw, 18px);
+        font-size: clamp(12px, 3.2vw, 17px);
+      }
+
+      .brand-card > .expertise-line {
+        font-size: 9px;
+        line-height: 1.28;
+        padding-top: 8px;
       }
     }
   </style>

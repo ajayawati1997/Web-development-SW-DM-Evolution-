@@ -324,6 +324,14 @@
       text-shadow: 0 0 18px rgba(31, 197, 255, .12);
     }
 
+    .brand-title-split {
+      gap: .22em;
+    }
+
+    .brand-title-split span {
+      display: inline-block;
+    }
+
     .brand-info small {
       display: block;
       margin-top: 8px;
@@ -592,6 +600,13 @@
       .brand-info strong {
         font-size: clamp(12px, 3.3vw, 17px);
       }
+      .brand-title-split {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0;
+      }
+
 
       .brand-logo-img {
         width: 100%;
@@ -745,7 +760,7 @@
                   <small class="since-badge">Since 2019</small>
                 </div>
                 <div class="brand-info">
-                  <strong>D-MECH INDUSTRY</strong>
+                  <strong class="brand-title-split"><span>D-MECH</span><span>INDUSTRY</span></strong>
                 </div>
                 <b class="brand-founder"><span class="founder-label">Founder</span><span class="founder-name">MR. AJAY ARUN AWATI</span></b>
                 <small class="expertise-line">Expanded into Product Development and Precision Machining, providing innovative engineering solutions with a focus on accuracy, efficiency, and continuous improvement.</small>
@@ -758,7 +773,7 @@
                   <small class="since-badge">Since 2026</small>
                 </div>
                 <div class="brand-info">
-                  <strong>SW-DM EVOLUTION</strong>
+                  <strong class="brand-title-split"><span>SW-DM</span><span>EVOLUTION</span></strong>
                 </div>
                 <b class="brand-founder brand-founder-dual"><span class="founder-label">Founders</span><span class="founder-name"><span>MR. ARUN GANGADHAR AWATI</span><span>MR. AJAY ARUN AWATI</span></span></b>
                 <small class="expertise-line">Uniting SW heritage and DM innovation for complete Design &bull; Development &bull; Manufacturing solutions with Zero Defect quality.</small>

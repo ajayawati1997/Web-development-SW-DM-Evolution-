@@ -42,7 +42,7 @@
   const revealHomepage = () => {
     document.documentElement.classList.add("swdm-homepage-ready");
     document.body?.classList.remove("swdm-intro-active");
-    if (state.root) {
+    if (state.root && !document.body.classList.contains("swdm-intro-standalone")) {
       state.root.replaceChildren();
     }
   };
@@ -98,16 +98,8 @@
     list.replaceChildren(fragment);
   };
 
-  const mountIntro = (html) => {
-    state.root = document.getElementById("swdm-intro-root");
-    if (!state.root) {
-      state.root = document.createElement("div");
-      state.root.id = "swdm-intro-root";
-      document.body.prepend(state.root);
-    }
-
-    state.root.innerHTML = html;
-    state.overlay = state.root.querySelector(".swdm-intro");
+  const activateIntro = (overlay) => {
+    state.overlay = overlay;
     if (!state.overlay) {
       revealHomepage();
       return;
@@ -122,9 +114,34 @@
     state.endTimer = window.setTimeout(endIntro, SWDM_INTRO_CONFIG.timings.totalDuration);
   };
 
+  const mountIntro = (html) => {
+    state.root = document.getElementById("swdm-intro-root");
+    if (!state.root) {
+      state.root = document.createElement("div");
+      state.root.id = "swdm-intro-root";
+      document.body.prepend(state.root);
+    }
+
+    const parsed = new DOMParser().parseFromString(html, "text/html");
+    const introMarkup = parsed.querySelector(".swdm-intro");
+    if (!introMarkup) {
+      revealHomepage();
+      return;
+    }
+
+    state.root.replaceChildren(introMarkup);
+    activateIntro(introMarkup);
+  };
+
   const loadIntro = async () => {
     if (!SWDM_INTRO_CONFIG.introEnabled || hasReducedMotion() || sessionHasSeenIntro()) {
       revealHomepage();
+      return;
+    }
+
+    const standaloneIntro = document.querySelector(".swdm-intro");
+    if (standaloneIntro && document.body.classList.contains("swdm-intro-standalone")) {
+      activateIntro(standaloneIntro);
       return;
     }
 

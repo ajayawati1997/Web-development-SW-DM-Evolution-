@@ -48,7 +48,6 @@ body.swdm-intro-standalone {
   z-index: 0;
   background:
     radial-gradient(circle at 50% 42%, rgba(91, 95, 101, .22), transparent 36%),
-    radial-gradient(circle at 72% 58%, rgba(145, 152, 158, .13), transparent 34%),
     linear-gradient(135deg, #000 0%, #070809 44%, #181b20 62%, #020304 100%);
   opacity: 0;
   animation: graphiteWake 9s ease forwards;
@@ -80,30 +79,6 @@ body.swdm-intro-standalone {
   filter: blur(18px);
   opacity: .55;
   animation: smokeDrift 9s ease-in-out forwards;
-}
-
-.swdm-intro__grid {
-  position: absolute;
-  inset: -30%;
-  background-image:
-    linear-gradient(rgba(176, 185, 190, .07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(176, 185, 190, .07) 1px, transparent 1px);
-  background-size: clamp(36px, 6vmin, 72px) clamp(36px, 6vmin, 72px);
-  transform: perspective(720px) rotateX(63deg) translateY(12%);
-  transform-origin: center bottom;
-  animation: gridDrive 9s linear forwards;
-}
-
-.swdm-intro__scan {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, transparent, rgba(255,255,255,.08), rgba(214,220,224,.30), transparent),
-    repeating-linear-gradient(180deg, rgba(255,255,255,.025) 0 1px, transparent 1px 7px);
-  background-size: 100% 24%, 100% 100%;
-  mix-blend-mode: screen;
-  opacity: .55;
-  animation: scanRun 9s cubic-bezier(.24,.8,.2,1) forwards;
 }
 
 .swdm-intro__name-reveal {
@@ -139,6 +114,20 @@ body.swdm-intro-standalone {
   display: grid;
   place-items: center;
   pointer-events: none;
+}
+
+.swdm-intro__logo-spark {
+  position: absolute;
+  width: clamp(130px, 42vmin, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(245, 248, 250, .72) 0 2%, rgba(226, 232, 235, .18) 9%, transparent 32%),
+    conic-gradient(from 18deg, transparent 0 14%, rgba(238, 242, 244, .75) 16%, transparent 18% 42%, rgba(180, 190, 196, .45) 44%, transparent 47% 100%);
+  filter: blur(.2px) drop-shadow(0 0 18px rgba(224, 230, 234, .38));
+  opacity: 0;
+  transform: scale(.42) rotate(-8deg);
+  animation: logoSpark 9s ease forwards;
 }
 
 .swdm-intro__dd-logo {
@@ -355,10 +344,17 @@ body.swdm-intro-standalone {
 }
 
 @keyframes metalName {
-  0% { opacity: 0; color: #030405; transform: scale(.96); }
-  6%, 12% { opacity: 1; color: #15181c; transform: scale(1); }
-  21% { opacity: 1; color: #3e444a; transform: scale(1.08); }
-  30%, 100% { opacity: 0; color: #e9eeee; transform: scale(1.8); }
+  0% { opacity: 0; color: #000; transform: scale(.96); }
+  7%, 14% { opacity: 1; color: #050607; transform: scale(1); }
+  22% { opacity: .92; color: #22262b; transform: scale(1.06); }
+  30%, 100% { opacity: 0; color: #8f969b; transform: scale(1.72); }
+}
+
+@keyframes logoSpark {
+  0%, 14% { opacity: 0; transform: scale(.28) rotate(-10deg); }
+  17% { opacity: .9; transform: scale(.74) rotate(0); }
+  20% { opacity: .34; transform: scale(1.02) rotate(16deg); }
+  23%, 100% { opacity: 0; transform: scale(1.45) rotate(28deg); }
 }
 
 @keyframes ddZoom {
@@ -410,18 +406,6 @@ body.swdm-intro-standalone {
   0% { transform: translate3d(-2%, 2%, 0) scale(1); opacity: .42; }
   50% { transform: translate3d(2%, -2%, 0) scale(1.08); opacity: .62; }
   100% { transform: translate3d(5%, -4%, 0) scale(1.16); opacity: .18; }
-}
-
-@keyframes gridDrive {
-  0% { transform: perspective(720px) rotateX(63deg) translateY(16%) scale(1); opacity: .42; }
-  52% { opacity: .65; }
-  100% { transform: perspective(720px) rotateX(64deg) translateY(-20%) scale(1.32); opacity: .12; }
-}
-
-@keyframes scanRun {
-  0% { background-position: 0 -40svh, 0 0; opacity: .3; }
-  45% { opacity: .62; }
-  100% { background-position: 0 120svh, 0 0; opacity: 0; }
 }
 
 @keyframes swdmIntroExit {
@@ -483,10 +467,6 @@ body.swdm-intro-standalone {
   .swdm-intro__smoke {
     filter: blur(12px);
     opacity: .42;
-  }
-
-  .swdm-intro__grid {
-    opacity: .32;
   }
 
   .swdm-intro__service-panel {

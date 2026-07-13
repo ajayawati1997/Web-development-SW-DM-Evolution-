@@ -10,6 +10,22 @@ body.swdm-intro-standalone {
   background: #010203;
 }
 
+html.swdm-intro-pending body {
+  background: #000;
+}
+
+html.swdm-intro-pending body > :not(#swdm-intro-root) {
+  visibility: hidden;
+}
+
+html.swdm-intro-pending #swdm-intro-root:empty::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147482999;
+  background: #000;
+}
+
 .swdm-intro {
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-right: env(safe-area-inset-right, 0px);

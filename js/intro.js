@@ -45,6 +45,7 @@
   };
 
   const revealHomepage = () => {
+    document.documentElement.classList.remove("swdm-intro-pending");
     document.documentElement.classList.add("swdm-homepage-ready");
     document.body?.classList.remove("swdm-intro-active");
     if (state.root && !document.body.classList.contains("swdm-intro-standalone")) {
@@ -132,6 +133,7 @@
     }
 
     document.body.classList.add("swdm-intro-active");
+    document.documentElement.classList.remove("swdm-intro-pending");
     state.overlay.classList.remove("is-paused", "is-ending");
     state.overlay.querySelector(".swdm-intro__skip")?.addEventListener("click", (event) => {
       event.stopPropagation();

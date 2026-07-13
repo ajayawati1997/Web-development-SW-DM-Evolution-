@@ -13,7 +13,7 @@
     sessionKey: "swdmEvolutionIntroSeen",
     introSource: "intro.html",
     timings: {
-      totalDuration: 11000,
+      totalDuration: 20000,
       exitDuration: 550
     },
     services: [

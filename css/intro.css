@@ -50,7 +50,7 @@ body.swdm-intro-standalone {
     radial-gradient(circle at 50% 42%, rgba(91, 95, 101, .22), transparent 36%),
     linear-gradient(135deg, #000 0%, #070809 44%, #181b20 62%, #020304 100%);
   opacity: 0;
-  animation: graphiteWake 11s ease forwards;
+  animation: graphiteWake 20s ease forwards;
 }
 
 .swdm-intro__atmosphere,
@@ -66,7 +66,7 @@ body.swdm-intro-standalone {
   overflow: hidden;
   z-index: 0;
   opacity: 0;
-  animation: atmosphereWake 11s ease forwards;
+  animation: atmosphereWake 20s ease forwards;
 }
 
 .swdm-intro__smoke {
@@ -78,7 +78,7 @@ body.swdm-intro-standalone {
     radial-gradient(circle at 55% 70%, rgba(88, 92, 96, .13), transparent 30%);
   filter: blur(18px);
   opacity: .55;
-  animation: smokeDrift 11s ease-in-out forwards;
+  animation: smokeDrift 20s ease-in-out forwards;
 }
 
 .swdm-intro__name-reveal {
@@ -92,7 +92,7 @@ body.swdm-intro-standalone {
     calc(var(--pad) + var(--safe-left));
   box-sizing: border-box;
   pointer-events: none;
-  animation: nameStage 11s ease forwards;
+  animation: nameStage 20s ease forwards;
 }
 
 .swdm-intro__name-reveal::before,
@@ -111,12 +111,12 @@ body.swdm-intro-standalone {
 
 .swdm-intro__name-reveal::before {
   left: calc(50% - clamp(66px, 10vmin, 150px));
-  animation: stripeRight 11s ease forwards;
+  animation: stripeRight 20s ease forwards;
 }
 
 .swdm-intro__name-reveal::after {
   right: calc(50% - clamp(66px, 10vmin, 150px));
-  animation: stripeLeft 11s ease forwards;
+  animation: stripeLeft 20s ease forwards;
 }
 
 .swdm-intro__name-reveal span {
@@ -129,7 +129,7 @@ body.swdm-intro-standalone {
   line-height: .86;
   letter-spacing: clamp(.02em, .6vmin, .09em);
   text-align: center;
-  animation: metalName 11s ease forwards;
+  animation: metalName 20s ease forwards;
 }
 
 .swdm-intro__dd-stage {
@@ -152,7 +152,7 @@ body.swdm-intro-standalone {
   gap: clamp(8px, 1.2vmin, 16px);
   opacity: 0;
   transform: translate(-50%, -50%) scale(1);
-  animation: processFilmStage 11s ease forwards;
+  animation: processFilmStage 20s ease forwards;
 }
 
 .swdm-intro__process-float img {
@@ -188,7 +188,7 @@ body.swdm-intro-standalone {
   gap: clamp(4px, 1vmin, 10px);
   text-align: center;
   opacity: 0;
-  animation: wordBurst 11s ease forwards;
+  animation: wordBurst 20s ease forwards;
 }
 
 .swdm-intro__word-burst span {
@@ -318,27 +318,27 @@ body.swdm-intro-standalone {
 }
 
 .swdm-intro__service-panel.is-design {
-  animation: serviceDesign 11s ease forwards;
+  animation: serviceDesign 20s ease forwards;
 }
 
 .swdm-intro__service-panel.is-development {
-  animation: serviceDevelopment 11s ease forwards;
+  animation: serviceDevelopment 20s ease forwards;
 }
 
 .swdm-intro__service-panel.is-machining {
-  animation: serviceMachining 11s ease forwards;
+  animation: serviceMachining 20s ease forwards;
 }
 
 .swdm-intro__service-panel.is-design::before {
-  animation: serviceSoftShine 11s 4.6s ease forwards;
+  animation: serviceSoftShine 20s 7.8s ease forwards;
 }
 
 .swdm-intro__service-panel.is-development::before {
-  animation: serviceSoftShine 11s 6.2s ease forwards;
+  animation: serviceSoftShine 20s 10.8s ease forwards;
 }
 
 .swdm-intro__service-panel.is-machining::before {
-  animation: serviceSoftShine 11s 7.75s ease forwards;
+  animation: serviceSoftShine 20s 13.8s ease forwards;
 }
 
 .swdm-intro__final-lockup {
@@ -355,7 +355,7 @@ body.swdm-intro-standalone {
   text-align: center;
   opacity: 0;
   pointer-events: none;
-  animation: finalLockup 11s ease forwards;
+  animation: finalLockup 20s ease forwards;
 }
 
 .swdm-intro__final-lockup::before,
@@ -373,12 +373,12 @@ body.swdm-intro-standalone {
 
 .swdm-intro__final-lockup::before {
   top: calc(50% - clamp(30px, 5.2vmin, 68px));
-  animation: finalTypeALineRight 11s ease forwards;
+  animation: finalTypeALineRight 20s ease forwards;
 }
 
 .swdm-intro__final-lockup::after {
   top: calc(50% + clamp(18px, 3.8vmin, 52px));
-  animation: finalTypeALineLeft 11s ease forwards;
+  animation: finalTypeALineLeft 20s ease forwards;
 }
 
 .swdm-intro__final-lockup p {
@@ -428,72 +428,72 @@ body.swdm-intro-standalone {
 }
 
 @keyframes nameStage {
-  0%, 23% { opacity: 1; transform: scale(1); }
-  30%, 100% { opacity: 0; transform: scale(2.6); }
+  0%, 22% { opacity: 1; transform: scale(1); }
+  28%, 100% { opacity: 0; transform: scale(2.6); }
 }
 
 @keyframes graphiteWake {
   0%, 6% { opacity: 0; }
-  13%, 90% { opacity: 1; }
+  13%, 94% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 @keyframes atmosphereWake {
   0%, 8% { opacity: 0; }
-  16%, 90% { opacity: 1; }
+  16%, 94% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 @keyframes metalName {
   0% { opacity: 0; color: #000; transform: scale(.96); }
-  7%, 14% { opacity: 1; color: #5b6064; transform: scale(1); }
+  6%, 15% { opacity: 1; color: #5b6064; transform: scale(1); }
   22% { opacity: 1; color: #d9dddf; transform: scale(1.06); }
-  30%, 100% { opacity: 0; color: #d9dddf; transform: scale(1.72); }
+  28%, 100% { opacity: 0; color: #d9dddf; transform: scale(1.72); }
 }
 
 @keyframes stripeRight {
   0%, 5% { opacity: 0; transform: translate3d(-42vw, -50%, 0) scaleY(.72); }
-  9%, 18% { opacity: .92; transform: translate3d(0, -50%, 0) scaleY(1); }
-  25%, 100% { opacity: 0; transform: translate3d(42vw, -50%, 0) scaleY(1.06); }
+  9%, 20% { opacity: .92; transform: translate3d(0, -50%, 0) scaleY(1); }
+  27%, 100% { opacity: 0; transform: translate3d(42vw, -50%, 0) scaleY(1.06); }
 }
 
 @keyframes stripeLeft {
   0%, 5% { opacity: 0; transform: translate3d(42vw, -50%, 0) scaleY(.72); }
-  9%, 18% { opacity: .82; transform: translate3d(0, -50%, 0) scaleY(1); }
-  25%, 100% { opacity: 0; transform: translate3d(-42vw, -50%, 0) scaleY(1.06); }
+  9%, 20% { opacity: .82; transform: translate3d(0, -50%, 0) scaleY(1); }
+  27%, 100% { opacity: 0; transform: translate3d(-42vw, -50%, 0) scaleY(1.06); }
 }
 
 @keyframes wordBurst {
   0%, 28% { opacity: 0; transform: scale(.85); }
-  32%, 40% { opacity: 1; transform: scale(1); }
-  45%, 100% { opacity: 0; transform: scale(1.18); }
+  31%, 39% { opacity: 1; transform: scale(1); }
+  43%, 100% { opacity: 0; transform: scale(1.18); }
 }
 
 @keyframes processFilmStage {
   0%, 27% { opacity: 0; transform: translate(-50%, -50%) scale(.92); }
   31% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.03); }
-  39% { opacity: 1; transform: translate(-50%, -50%) scale(.99); }
-  43% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
-  48%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.06); }
+  34% { opacity: 1; transform: translate(-50%, -50%) scale(1.03); }
+  37% { opacity: 1; transform: translate(-50%, -50%) scale(.99); }
+  40% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
+  44%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.06); }
 }
 
 @keyframes serviceDesign {
   0%, 42% { opacity: 0; transform: translateX(18vw) scale(.88); }
-  45%, 53% { opacity: 1; transform: translateX(0) scale(1); }
-  57%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
+  45%, 55% { opacity: 1; transform: translateX(0) scale(1); }
+  58%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
 @keyframes serviceDevelopment {
   0%, 57% { opacity: 0; transform: translateX(18vw) scale(.88); }
-  60%, 68% { opacity: 1; transform: translateX(0) scale(1); }
-  72%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
+  60%, 70% { opacity: 1; transform: translateX(0) scale(1); }
+  73%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
 @keyframes serviceMachining {
   0%, 72% { opacity: 0; transform: translateX(18vw) scale(.88); }
-  75%, 86% { opacity: 1; transform: translateX(0) scale(1); }
-  91%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
+  75%, 85% { opacity: 1; transform: translateX(0) scale(1); }
+  88%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
 @keyframes serviceSoftShine {
@@ -503,21 +503,21 @@ body.swdm-intro-standalone {
 }
 
 @keyframes finalLockup {
-  0%, 89% { opacity: 0; transform: scale(.86); }
-  92%, 98.7% { opacity: 1; transform: scale(1); }
+  0%, 86% { opacity: 0; transform: scale(.86); }
+  89%, 98.7% { opacity: 1; transform: scale(1); }
   99.4% { opacity: 1; transform: scale(1.02); }
   100% { opacity: 0; transform: scale(1.08); }
 }
 
 @keyframes finalTypeALineRight {
-  0%, 89% { opacity: 0; transform: translateX(-78%) scaleX(.62); }
-  92%, 98.7% { opacity: .86; transform: translateX(-50%) scaleX(1); }
+  0%, 86% { opacity: 0; transform: translateX(-78%) scaleX(.62); }
+  89%, 98.7% { opacity: .86; transform: translateX(-50%) scaleX(1); }
   100% { opacity: 0; transform: translateX(-14%) scaleX(1.08); }
 }
 
 @keyframes finalTypeALineLeft {
-  0%, 89% { opacity: 0; transform: translateX(-22%) scaleX(.62); }
-  92%, 98.7% { opacity: .78; transform: translateX(-50%) scaleX(1); }
+  0%, 86% { opacity: 0; transform: translateX(-22%) scaleX(.62); }
+  89%, 98.7% { opacity: .78; transform: translateX(-50%) scaleX(1); }
   100% { opacity: 0; transform: translateX(-86%) scaleX(1.08); }
 }
 

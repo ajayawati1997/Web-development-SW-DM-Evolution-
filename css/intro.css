@@ -21,7 +21,7 @@ body.swdm-intro-standalone {
   --small: clamp(.58rem, 1.55vmin, 1rem);
   --logo-size: clamp(140px, 34vmin, 430px);
   --panel-w: min(88vw, 920px);
-  --panel-h: clamp(150px, 34svh, 360px);
+  --panel-h: clamp(180px, 36svh, 380px);
   position: fixed;
   inset: 0;
   z-index: 2147483000;
@@ -185,7 +185,7 @@ body.swdm-intro-standalone {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(6px, 1vmin, 13px);
+  gap: clamp(7px, 1.1vmin, 14px);
   min-width: 0;
   overflow: hidden;
   padding: clamp(14px, 3vmin, 40px);
@@ -198,23 +198,43 @@ body.swdm-intro-standalone {
   margin: 0;
   color: #f3f5f6;
   max-width: 100%;
-  font-size: clamp(1.18rem, 4.55vmin, 4.15rem);
+  font-size: clamp(1.1rem, 4.1vmin, 3.8rem);
   font-weight: 900;
   line-height: .92;
   letter-spacing: .035em;
   overflow-wrap: anywhere;
 }
 
-.swdm-intro__service-panel span {
+.swdm-intro__recap {
+  display: grid;
+  gap: clamp(2px, .45vmin, 6px);
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   color: #b9c0c5;
   font-family: Arial, sans-serif;
-  max-width: 100%;
-  font-size: clamp(.54rem, 1.45vmin, .9rem);
+  font-size: clamp(.5rem, 1.28vmin, .78rem);
   font-weight: 800;
-  line-height: 1.35;
-  letter-spacing: .045em;
+  line-height: 1.16;
+  letter-spacing: .035em;
   text-transform: uppercase;
   overflow-wrap: anywhere;
+}
+
+.swdm-intro__recap li {
+  position: relative;
+  padding-left: 1.05em;
+}
+
+.swdm-intro__recap li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .47em;
+  width: .45em;
+  height: 1px;
+  background: #8d969b;
 }
 
 .swdm-intro__service-panel.is-machining img {
@@ -381,12 +401,12 @@ body.swdm-intro-standalone {
     --title: clamp(1.55rem, 8.2vmin, 3.2rem);
     --final-title: clamp(1.35rem, 7.2vmin, 2.75rem);
     --logo-size: clamp(120px, 38vmin, 240px);
-    --panel-h: clamp(210px, 46svh, 340px);
+    --panel-h: clamp(250px, 58svh, 430px);
   }
 
   .swdm-intro__service-panel {
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, 62%) minmax(0, 38%);
+    grid-template-rows: minmax(0, 48%) minmax(0, 52%);
     width: min(90vw, 520px);
   }
 
@@ -418,9 +438,10 @@ body.swdm-intro-standalone {
     font-size: clamp(.9rem, 6.2svh, 2rem);
   }
 
-  .swdm-intro__service-panel span {
-    font-size: clamp(.42rem, 2.45svh, .62rem);
-    line-height: 1.22;
+  .swdm-intro__recap {
+    font-size: clamp(.38rem, 2.1svh, .56rem);
+    line-height: 1.08;
+    gap: 1px;
   }
 
 }

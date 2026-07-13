@@ -17,9 +17,20 @@
       exitDuration: 550
     },
     services: [
-      "Design",
-      "Development",
-      "Machining"
+      "CAD model rotating",
+      "Engineer working",
+      "Blueprints",
+      "Digital wireframe",
+      "Prototype assembly",
+      "Measuring instruments",
+      "Testing",
+      "Product validation",
+      "Real Haas CNC machining",
+      "Coolant spraying",
+      "Tool changing",
+      "Chips flying",
+      "Close-up cutting",
+      "Finished precision part"
     ]
   };
 

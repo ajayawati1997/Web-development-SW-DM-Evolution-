@@ -100,22 +100,22 @@ body.swdm-intro-standalone {
   content: "";
   position: absolute;
   z-index: 0;
-  left: 50%;
-  width: min(74vw, 880px);
-  height: clamp(10px, 1.7vmin, 22px);
-  background: linear-gradient(90deg, transparent 0, rgba(134, 0, 0, .18) 12%, #7d0000 32%, #d41616 50%, #7d0000 68%, rgba(134, 0, 0, .18) 88%, transparent 100%);
+  top: 50%;
+  width: clamp(34px, 5.6vmin, 78px);
+  height: min(58svh, 520px);
+  background: linear-gradient(90deg, rgba(82,0,0,.14) 0, #760000 24%, #d41616 50%, #760000 76%, rgba(82,0,0,.14) 100%);
   opacity: 0;
-  transform: translateX(-50%);
+  transform: translateY(-50%);
   pointer-events: none;
 }
 
 .swdm-intro__name-reveal::before {
-  top: calc(50% - clamp(28px, 5vmin, 64px));
+  left: calc(50% - min(34vw, 430px));
   animation: stripeRight 9s ease forwards;
 }
 
 .swdm-intro__name-reveal::after {
-  top: calc(50% + clamp(18px, 3.8vmin, 50px));
+  right: calc(50% - min(34vw, 430px));
   animation: stripeLeft 9s ease forwards;
 }
 
@@ -379,15 +379,15 @@ body.swdm-intro-standalone {
 }
 
 @keyframes stripeRight {
-  0%, 5% { opacity: 0; transform: translateX(-78%) scaleX(.62); }
-  9%, 18% { opacity: .92; transform: translateX(-50%) scaleX(1); }
-  25%, 100% { opacity: 0; transform: translateX(-14%) scaleX(1.08); }
+  0%, 5% { opacity: 0; transform: translate3d(-42vw, -50%, 0) scaleY(.72); }
+  9%, 18% { opacity: .92; transform: translate3d(0, -50%, 0) scaleY(1); }
+  25%, 100% { opacity: 0; transform: translate3d(42vw, -50%, 0) scaleY(1.06); }
 }
 
 @keyframes stripeLeft {
-  0%, 5% { opacity: 0; transform: translateX(-22%) scaleX(.62); }
-  9%, 18% { opacity: .82; transform: translateX(-50%) scaleX(1); }
-  25%, 100% { opacity: 0; transform: translateX(-86%) scaleX(1.08); }
+  0%, 5% { opacity: 0; transform: translate3d(42vw, -50%, 0) scaleY(.72); }
+  9%, 18% { opacity: .82; transform: translate3d(0, -50%, 0) scaleY(1); }
+  25%, 100% { opacity: 0; transform: translate3d(-42vw, -50%, 0) scaleY(1.06); }
 }
 
 @keyframes wordBurst {
@@ -447,8 +447,8 @@ body.swdm-intro-standalone {
 
   .swdm-intro__name-reveal::before,
   .swdm-intro__name-reveal::after {
-    width: min(86vw, 560px);
-    height: clamp(8px, 2.2vmin, 16px);
+    width: clamp(22px, 6.8vmin, 46px);
+    height: min(54svh, 360px);
   }
 
   .swdm-intro__service-panel {

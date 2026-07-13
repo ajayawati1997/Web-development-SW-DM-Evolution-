@@ -8,7 +8,7 @@
   // =========================
   const SWDM_INTRO_CONFIG = {
     introEnabled: true,
-    showOncePerSession: true,
+    showOncePerSession: false,
     soundEnabled: false,
     sessionKey: "swdmEvolutionIntroSeen",
     introSource: "intro.html",
@@ -87,6 +87,7 @@
   };
 
   const activateIntro = (overlay) => {
+    state.ending = false;
     state.overlay = overlay;
     if (!state.overlay) {
       revealHomepage();
@@ -117,8 +118,8 @@
     activateIntro(introMarkup);
   };
 
-  const loadIntro = async () => {
-    if (!SWDM_INTRO_CONFIG.introEnabled || hasReducedMotion() || sessionHasSeenIntro()) {
+  const loadIntro = async ({ force = false } = {}) => {
+    if (!SWDM_INTRO_CONFIG.introEnabled || hasReducedMotion() || (!force && sessionHasSeenIntro())) {
       revealHomepage();
       return;
     }
@@ -140,6 +141,21 @@
     }
   };
 
+  const replayIntro = () => {
+    window.clearTimeout(state.endTimer);
+    state.ending = false;
+    loadIntro({ force: true });
+  };
+
+  const bindReplayButtons = () => {
+    document.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-swdm-intro-replay]");
+      if (!trigger) return;
+      event.preventDefault();
+      replayIntro();
+    });
+  };
+
   window.SWDMIntro = {
     config: SWDM_INTRO_CONFIG,
     enable() {
@@ -156,12 +172,17 @@
         // sessionStorage can be unavailable in restricted browser contexts.
       }
     },
+    play: replayIntro,
     end: endIntro
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", loadIntro, { once: true });
+    document.addEventListener("DOMContentLoaded", () => {
+      bindReplayButtons();
+      loadIntro();
+    }, { once: true });
   } else {
+    bindReplayButtons();
     loadIntro();
   }
 })();

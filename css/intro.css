@@ -97,7 +97,7 @@ body.swdm-intro-standalone {
 
 .swdm-intro__name-reveal span {
   max-width: 94vw;
-  color: #1b1e22;
+  color: #d9dddf;
   font-size: var(--title);
   font-weight: 900;
   line-height: .86;
@@ -111,40 +111,6 @@ body.swdm-intro-standalone {
   display: grid;
   place-items: center;
   pointer-events: none;
-}
-
-.swdm-intro__logo-spark {
-  position: absolute;
-  width: clamp(130px, 42vmin, 520px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(245, 248, 250, .72) 0 2%, rgba(226, 232, 235, .18) 9%, transparent 32%),
-    conic-gradient(from 18deg, transparent 0 14%, rgba(238, 242, 244, .75) 16%, transparent 18% 42%, rgba(180, 190, 196, .45) 44%, transparent 47% 100%);
-  filter: blur(.2px) drop-shadow(0 0 18px rgba(224, 230, 234, .38));
-  opacity: 0;
-  transform: scale(.42) rotate(-8deg);
-  animation: logoSpark 9s ease forwards;
-}
-
-.swdm-intro__type-logo {
-  width: var(--logo-size);
-  aspect-ratio: 1.55;
-  max-width: 82vw;
-  max-height: 52svh;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(170, 178, 184, .22);
-  color: #e8ecee;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.01)),
-    #030405;
-  font-size: clamp(2.1rem, 11vmin, 7rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: .04em;
-  opacity: 0;
-  animation: ddZoom 9s cubic-bezier(.2,.78,.18,1) forwards;
 }
 
 .swdm-intro__word-burst {
@@ -285,24 +251,6 @@ body.swdm-intro-standalone {
   animation: finalLockup 9s ease forwards;
 }
 
-.swdm-intro__final-mark {
-  width: clamp(150px, 34vmin, 430px);
-  aspect-ratio: 1.55;
-  max-width: 76vw;
-  max-height: 38svh;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(170, 178, 184, .22);
-  color: #e8ecee;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.01)),
-    #030405;
-  font-size: clamp(2rem, 9vmin, 6.6rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: .04em;
-}
-
 .swdm-intro__final-lockup p {
   margin: 0;
   color: #eef2f3;
@@ -364,24 +312,9 @@ body.swdm-intro-standalone {
 
 @keyframes metalName {
   0% { opacity: 0; color: #000; transform: scale(.96); }
-  7%, 14% { opacity: 1; color: #050607; transform: scale(1); }
-  22% { opacity: .92; color: #22262b; transform: scale(1.06); }
-  30%, 100% { opacity: 0; color: #8f969b; transform: scale(1.72); }
-}
-
-@keyframes logoSpark {
-  0%, 14% { opacity: 0; transform: scale(.28) rotate(-10deg); }
-  17% { opacity: .9; transform: scale(.74) rotate(0); }
-  20% { opacity: .34; transform: scale(1.02) rotate(16deg); }
-  23%, 100% { opacity: 0; transform: scale(1.45) rotate(28deg); }
-}
-
-@keyframes ddZoom {
-  0%, 10% { opacity: 0; transform: scale(.42) rotate(-8deg); }
-  15% { opacity: 1; transform: scale(.72) rotate(0); }
-  20% { opacity: 1; transform: scale(1.04); }
-  27% { opacity: .98; transform: scale(4.2); filter: blur(.4px) brightness(1.2); }
-  31%, 100% { opacity: 0; transform: scale(8); filter: blur(9px) brightness(1.6); }
+  7%, 14% { opacity: 1; color: #5b6064; transform: scale(1); }
+  22% { opacity: 1; color: #d9dddf; transform: scale(1.06); }
+  30%, 100% { opacity: 0; color: #d9dddf; transform: scale(1.72); }
 }
 
 @keyframes wordBurst {
@@ -476,10 +409,6 @@ body.swdm-intro-standalone {
     font-size: clamp(.48rem, 2.8svh, .68rem);
   }
 
-  .swdm-intro__final-mark,
-  .swdm-intro__type-logo {
-    max-height: 32svh;
-  }
 }
 
 @media (pointer: coarse), (max-width: 760px), (max-height: 520px) {

@@ -187,6 +187,7 @@ body.swdm-intro-standalone {
   justify-content: center;
   gap: clamp(6px, 1vmin, 13px);
   min-width: 0;
+  overflow: hidden;
   padding: clamp(14px, 3vmin, 40px);
   background:
     linear-gradient(90deg, rgba(3,4,5,.78), rgba(3,4,5,.94)),
@@ -196,20 +197,29 @@ body.swdm-intro-standalone {
 .swdm-intro__service-panel p {
   margin: 0;
   color: #f3f5f6;
-  font-size: clamp(1.35rem, 5.3vmin, 4.8rem);
+  max-width: 100%;
+  font-size: clamp(1.18rem, 4.55vmin, 4.15rem);
   font-weight: 900;
-  line-height: .88;
-  letter-spacing: .06em;
+  line-height: .92;
+  letter-spacing: .035em;
+  overflow-wrap: anywhere;
 }
 
 .swdm-intro__service-panel span {
   color: #b9c0c5;
   font-family: Arial, sans-serif;
-  font-size: clamp(.58rem, 1.7vmin, 1.02rem);
+  max-width: 100%;
+  font-size: clamp(.54rem, 1.45vmin, .9rem);
   font-weight: 800;
   line-height: 1.35;
-  letter-spacing: .08em;
+  letter-spacing: .045em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.swdm-intro__service-panel.is-machining img {
+  padding: clamp(4px, 1.2vmin, 14px);
+  box-sizing: border-box;
 }
 
 .swdm-intro__service-panel.is-design {
@@ -405,11 +415,12 @@ body.swdm-intro-standalone {
   }
 
   .swdm-intro__service-panel p {
-    font-size: clamp(1rem, 7svh, 2.3rem);
+    font-size: clamp(.9rem, 6.2svh, 2rem);
   }
 
   .swdm-intro__service-panel span {
-    font-size: clamp(.48rem, 2.8svh, .68rem);
+    font-size: clamp(.42rem, 2.45svh, .62rem);
+    line-height: 1.22;
   }
 
 }

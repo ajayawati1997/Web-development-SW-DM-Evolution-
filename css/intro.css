@@ -50,7 +50,7 @@ body.swdm-intro-standalone {
     radial-gradient(circle at 50% 42%, rgba(91, 95, 101, .22), transparent 36%),
     linear-gradient(135deg, #000 0%, #070809 44%, #181b20 62%, #020304 100%);
   opacity: 0;
-  animation: graphiteWake 9s ease forwards;
+  animation: graphiteWake 11s ease forwards;
 }
 
 .swdm-intro__atmosphere,
@@ -66,7 +66,7 @@ body.swdm-intro-standalone {
   overflow: hidden;
   z-index: 0;
   opacity: 0;
-  animation: atmosphereWake 9s ease forwards;
+  animation: atmosphereWake 11s ease forwards;
 }
 
 .swdm-intro__smoke {
@@ -78,7 +78,7 @@ body.swdm-intro-standalone {
     radial-gradient(circle at 55% 70%, rgba(88, 92, 96, .13), transparent 30%);
   filter: blur(18px);
   opacity: .55;
-  animation: smokeDrift 9s ease-in-out forwards;
+  animation: smokeDrift 11s ease-in-out forwards;
 }
 
 .swdm-intro__name-reveal {
@@ -92,7 +92,7 @@ body.swdm-intro-standalone {
     calc(var(--pad) + var(--safe-left));
   box-sizing: border-box;
   pointer-events: none;
-  animation: nameStage 9s ease forwards;
+  animation: nameStage 11s ease forwards;
 }
 
 .swdm-intro__name-reveal::before,
@@ -111,12 +111,12 @@ body.swdm-intro-standalone {
 
 .swdm-intro__name-reveal::before {
   left: calc(50% - clamp(66px, 10vmin, 150px));
-  animation: stripeRight 9s ease forwards;
+  animation: stripeRight 11s ease forwards;
 }
 
 .swdm-intro__name-reveal::after {
   right: calc(50% - clamp(66px, 10vmin, 150px));
-  animation: stripeLeft 9s ease forwards;
+  animation: stripeLeft 11s ease forwards;
 }
 
 .swdm-intro__name-reveal span {
@@ -129,7 +129,7 @@ body.swdm-intro-standalone {
   line-height: .86;
   letter-spacing: clamp(.02em, .6vmin, .09em);
   text-align: center;
-  animation: metalName 9s ease forwards;
+  animation: metalName 11s ease forwards;
 }
 
 .swdm-intro__dd-stage {
@@ -145,7 +145,7 @@ body.swdm-intro-standalone {
   gap: clamp(4px, 1vmin, 10px);
   text-align: center;
   opacity: 0;
-  animation: wordBurst 9s ease forwards;
+  animation: wordBurst 11s ease forwards;
 }
 
 .swdm-intro__word-burst span {
@@ -272,27 +272,27 @@ body.swdm-intro-standalone {
 }
 
 .swdm-intro__service-panel.is-design {
-  animation: serviceDesign 9s ease forwards;
+  animation: serviceDesign 11s ease forwards;
 }
 
 .swdm-intro__service-panel.is-development {
-  animation: serviceDevelopment 9s ease forwards;
+  animation: serviceDevelopment 11s ease forwards;
 }
 
 .swdm-intro__service-panel.is-machining {
-  animation: serviceMachining 9s ease forwards;
+  animation: serviceMachining 11s ease forwards;
 }
 
 .swdm-intro__service-panel.is-design::before {
-  animation: serviceSoftShine 9s 3.75s ease forwards;
+  animation: serviceSoftShine 11s 4.6s ease forwards;
 }
 
 .swdm-intro__service-panel.is-development::before {
-  animation: serviceSoftShine 9s 5.05s ease forwards;
+  animation: serviceSoftShine 11s 6.2s ease forwards;
 }
 
 .swdm-intro__service-panel.is-machining::before {
-  animation: serviceSoftShine 9s 6.35s ease forwards;
+  animation: serviceSoftShine 11s 7.75s ease forwards;
 }
 
 .swdm-intro__final-lockup {
@@ -309,7 +309,7 @@ body.swdm-intro-standalone {
   text-align: center;
   opacity: 0;
   pointer-events: none;
-  animation: finalLockup 9s ease forwards;
+  animation: finalLockup 11s ease forwards;
 }
 
 .swdm-intro__final-lockup::before,
@@ -327,12 +327,12 @@ body.swdm-intro-standalone {
 
 .swdm-intro__final-lockup::before {
   top: calc(50% - clamp(30px, 5.2vmin, 68px));
-  animation: finalTypeALineRight 9s ease forwards;
+  animation: finalTypeALineRight 11s ease forwards;
 }
 
 .swdm-intro__final-lockup::after {
   top: calc(50% + clamp(18px, 3.8vmin, 52px));
-  animation: finalTypeALineLeft 9s ease forwards;
+  animation: finalTypeALineLeft 11s ease forwards;
 }
 
 .swdm-intro__final-lockup p {

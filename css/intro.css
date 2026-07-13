@@ -146,6 +146,7 @@ body.swdm-intro-standalone {
   top: 50%;
   width: min(46vw, 620px);
   height: min(30svh, 260px);
+  max-height: calc(100svh - 180px);
   z-index: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -564,8 +565,9 @@ body.swdm-intro-standalone {
   }
 
   .swdm-intro__process-float {
-    width: min(84vw, 500px);
-    height: min(46svh, 380px);
+    width: min(82vw, 500px);
+    height: min(32svh, 260px);
+    max-height: calc(100svh - 210px);
     gap: clamp(5px, 1.4vmin, 9px);
   }
 
@@ -609,8 +611,9 @@ body.swdm-intro-standalone {
   }
 
   .swdm-intro__process-float {
-    width: min(58vw, 640px);
-    height: min(58svh, 300px);
+    width: min(54vw, 620px);
+    height: min(44svh, 240px);
+    max-height: calc(100svh - 90px);
   }
 
   .swdm-intro__service-panel {

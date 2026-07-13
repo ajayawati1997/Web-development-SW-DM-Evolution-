@@ -312,7 +312,32 @@ body.swdm-intro-standalone {
   animation: finalLockup 9s ease forwards;
 }
 
+.swdm-intro__final-lockup::before,
+.swdm-intro__final-lockup::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  width: min(74vw, 880px);
+  height: clamp(10px, 1.7vmin, 22px);
+  background: linear-gradient(90deg, transparent 0, rgba(134, 0, 0, .18) 12%, #7d0000 32%, #d41616 50%, #7d0000 68%, rgba(134, 0, 0, .18) 88%, transparent 100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.swdm-intro__final-lockup::before {
+  top: calc(50% - clamp(30px, 5.2vmin, 68px));
+  animation: finalTypeALineRight 9s ease forwards;
+}
+
+.swdm-intro__final-lockup::after {
+  top: calc(50% + clamp(18px, 3.8vmin, 52px));
+  animation: finalTypeALineLeft 9s ease forwards;
+}
+
 .swdm-intro__final-lockup p {
+  position: relative;
+  z-index: 1;
   margin: 0;
   color: #eef2f3;
   font-size: var(--final-title);
@@ -322,6 +347,8 @@ body.swdm-intro-standalone {
 }
 
 .swdm-intro__final-lockup span {
+  position: relative;
+  z-index: 1;
   color: #c4c9cc;
   font-family: Arial, sans-serif;
   font-size: var(--small);
@@ -427,6 +454,18 @@ body.swdm-intro-standalone {
   100% { opacity: 0; transform: scale(1.08); }
 }
 
+@keyframes finalTypeALineRight {
+  0%, 91% { opacity: 0; transform: translateX(-78%) scaleX(.62); }
+  94%, 98% { opacity: .88; transform: translateX(-50%) scaleX(1); }
+  100% { opacity: 0; transform: translateX(-14%) scaleX(1.08); }
+}
+
+@keyframes finalTypeALineLeft {
+  0%, 91% { opacity: 0; transform: translateX(-22%) scaleX(.62); }
+  94%, 98% { opacity: .78; transform: translateX(-50%) scaleX(1); }
+  100% { opacity: 0; transform: translateX(-86%) scaleX(1.08); }
+}
+
 @keyframes smokeDrift {
   0% { transform: translate3d(-2%, 2%, 0) scale(1); opacity: .42; }
   50% { transform: translate3d(2%, -2%, 0) scale(1.08); opacity: .62; }
@@ -449,6 +488,12 @@ body.swdm-intro-standalone {
   .swdm-intro__name-reveal::after {
     width: clamp(42px, 11vmin, 78px);
     height: min(58svh, 430px);
+  }
+
+  .swdm-intro__final-lockup::before,
+  .swdm-intro__final-lockup::after {
+    width: min(86vw, 560px);
+    height: clamp(8px, 2.2vmin, 16px);
   }
 
   .swdm-intro__service-panel {

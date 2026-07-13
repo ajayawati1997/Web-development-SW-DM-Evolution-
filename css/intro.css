@@ -137,10 +137,54 @@ body.swdm-intro-standalone {
   display: grid;
   place-items: center;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.swdm-intro__process-float {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  animation: processFloatStage 11s ease forwards;
+}
+
+.swdm-intro__process-float img {
+  position: absolute;
+  width: clamp(150px, 24vmin, 360px);
+  aspect-ratio: 1.45;
+  object-fit: cover;
+  opacity: .46;
+  filter: grayscale(.28) brightness(.62) contrast(1.18);
+  transform: translate3d(0, 0, 0);
+  animation: processFloat 11s ease forwards;
+}
+
+.swdm-intro__process-float img:nth-child(1) {
+  left: 8vw;
+  top: 18vh;
+}
+
+.swdm-intro__process-float img:nth-child(2) {
+  right: 8vw;
+  top: 16vh;
+  animation-delay: .08s;
+}
+
+.swdm-intro__process-float img:nth-child(3) {
+  left: 13vw;
+  bottom: 17vh;
+  animation-delay: .16s;
+}
+
+.swdm-intro__process-float img:nth-child(4) {
+  right: 13vw;
+  bottom: 18vh;
+  animation-delay: .24s;
 }
 
 .swdm-intro__word-burst {
   position: absolute;
+  z-index: 1;
   display: grid;
   gap: clamp(4px, 1vmin, 10px);
   text-align: center;
@@ -149,7 +193,7 @@ body.swdm-intro-standalone {
 }
 
 .swdm-intro__word-burst span {
-  color: #eef2f3;
+  color: #9ca3a8;
   font-size: clamp(1.2rem, 5.6vmin, 4.6rem);
   font-weight: 900;
   line-height: .88;
@@ -320,7 +364,7 @@ body.swdm-intro-standalone {
   left: 50%;
   width: min(74vw, 880px);
   height: clamp(10px, 1.7vmin, 22px);
-  background: linear-gradient(90deg, transparent 0, rgba(134, 0, 0, .18) 12%, #7d0000 32%, #d41616 50%, #7d0000 68%, rgba(134, 0, 0, .18) 88%, transparent 100%);
+  background: #b40000;
   opacity: 0;
   pointer-events: none;
 }
@@ -423,6 +467,20 @@ body.swdm-intro-standalone {
   45%, 100% { opacity: 0; transform: scale(1.18); }
 }
 
+@keyframes processFloatStage {
+  0%, 27% { opacity: 0; }
+  31%, 43% { opacity: 1; }
+  48%, 100% { opacity: 0; }
+}
+
+@keyframes processFloat {
+  0%, 27% { transform: translate3d(0, 20px, 0) scale(.94); }
+  32% { transform: translate3d(-10px, -8px, 0) scale(1); }
+  36% { transform: translate3d(12px, 8px, 0) scale(1.035); }
+  41% { transform: translate3d(-6px, 2px, 0) scale(1.02); }
+  48%, 100% { transform: translate3d(0, -18px, 0) scale(1.08); }
+}
+
 @keyframes serviceDesign {
   0%, 42% { opacity: 0; transform: translateX(18vw) scale(.88); }
   45%, 53% { opacity: 1; transform: translateX(0) scale(1); }
@@ -448,21 +506,21 @@ body.swdm-intro-standalone {
 }
 
 @keyframes finalLockup {
-  0%, 91% { opacity: 0; transform: scale(.86); }
-  94%, 98% { opacity: 1; transform: scale(1); }
-  99% { opacity: 1; transform: scale(1.02); }
+  0%, 89% { opacity: 0; transform: scale(.86); }
+  92%, 98.7% { opacity: 1; transform: scale(1); }
+  99.4% { opacity: 1; transform: scale(1.02); }
   100% { opacity: 0; transform: scale(1.08); }
 }
 
 @keyframes finalTypeALineRight {
-  0%, 91% { opacity: 0; transform: translateX(-78%) scaleX(.62); }
-  94%, 98% { opacity: .88; transform: translateX(-50%) scaleX(1); }
+  0%, 89% { opacity: 0; transform: translateX(-78%) scaleX(.62); }
+  92%, 98.7% { opacity: .86; transform: translateX(-50%) scaleX(1); }
   100% { opacity: 0; transform: translateX(-14%) scaleX(1.08); }
 }
 
 @keyframes finalTypeALineLeft {
-  0%, 91% { opacity: 0; transform: translateX(-22%) scaleX(.62); }
-  94%, 98% { opacity: .78; transform: translateX(-50%) scaleX(1); }
+  0%, 89% { opacity: 0; transform: translateX(-22%) scaleX(.62); }
+  92%, 98.7% { opacity: .78; transform: translateX(-50%) scaleX(1); }
   100% { opacity: 0; transform: translateX(-86%) scaleX(1.08); }
 }
 
@@ -494,6 +552,31 @@ body.swdm-intro-standalone {
   .swdm-intro__final-lockup::after {
     width: min(86vw, 560px);
     height: clamp(8px, 2.2vmin, 16px);
+  }
+
+  .swdm-intro__process-float img {
+    width: clamp(100px, 30vmin, 180px);
+    opacity: .38;
+  }
+
+  .swdm-intro__process-float img:nth-child(1) {
+    left: 3vw;
+    top: 18vh;
+  }
+
+  .swdm-intro__process-float img:nth-child(2) {
+    right: 3vw;
+    top: 20vh;
+  }
+
+  .swdm-intro__process-float img:nth-child(3) {
+    left: 4vw;
+    bottom: 18vh;
+  }
+
+  .swdm-intro__process-float img:nth-child(4) {
+    right: 4vw;
+    bottom: 19vh;
   }
 
   .swdm-intro__service-panel {

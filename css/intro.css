@@ -20,8 +20,8 @@ body.swdm-intro-standalone {
   --final-title: clamp(1.7rem, 6.8vmin, 5.8rem);
   --small: clamp(.58rem, 1.55vmin, 1rem);
   --logo-size: clamp(140px, 34vmin, 430px);
-  --panel-w: min(92vw, 1080px);
-  --panel-h: clamp(220px, 42svh, 460px);
+  --panel-w: min(96vw, 1220px);
+  --panel-h: clamp(260px, 50svh, 540px);
   position: fixed;
   inset: 0;
   z-index: 2147483000;
@@ -401,13 +401,13 @@ body.swdm-intro-standalone {
     --title: clamp(1.55rem, 8.2vmin, 3.2rem);
     --final-title: clamp(1.35rem, 7.2vmin, 2.75rem);
     --logo-size: clamp(120px, 38vmin, 240px);
-    --panel-h: clamp(285px, 64svh, 480px);
+    --panel-h: clamp(320px, 72svh, 560px);
   }
 
   .swdm-intro__service-panel {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(0, 48%) minmax(0, 52%);
-    width: min(94vw, 620px);
+    width: min(96vw, 700px);
   }
 
   .swdm-intro__service-panel img {
@@ -425,8 +425,8 @@ body.swdm-intro-standalone {
     --title: clamp(1.25rem, 8svh, 2.2rem);
     --final-title: clamp(1.15rem, 7svh, 2rem);
     --logo-size: clamp(82px, 28svh, 150px);
-    --panel-w: min(91vw, 880px);
-    --panel-h: min(74svh, 310px);
+    --panel-w: min(96vw, 980px);
+    --panel-h: min(82svh, 360px);
     --small: clamp(.46rem, 2.4svh, .72rem);
   }
 

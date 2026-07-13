@@ -413,9 +413,9 @@ body.swdm-intro-standalone {
   letter-spacing: clamp(.08em, 1vmin, .22em);
 }
 
-.swdm-intro__skip,
-.swdm-intro__pause {
+.swdm-intro__skip {
   position: absolute;
+  right: calc(clamp(12px, 3vw, 34px) + var(--safe-right));
   bottom: calc(clamp(12px, 3vw, 34px) + var(--safe-bottom));
   z-index: 10;
   min-width: 96px;
@@ -431,18 +431,8 @@ body.swdm-intro-standalone {
   box-shadow: 0 0 18px rgba(188, 198, 204, .20);
 }
 
-.swdm-intro__skip {
-  right: calc(clamp(12px, 3vw, 34px) + var(--safe-right));
-}
-
-.swdm-intro__pause {
-  right: calc(clamp(124px, 15vw, 166px) + var(--safe-right));
-}
-
 .swdm-intro__skip:hover,
-.swdm-intro__skip:focus-visible,
-.swdm-intro__pause:hover,
-.swdm-intro__pause:focus-visible {
+.swdm-intro__skip:focus-visible {
   outline: none;
   border-color: #f0f4f6;
   box-shadow: 0 0 26px rgba(220, 226, 230, .38);

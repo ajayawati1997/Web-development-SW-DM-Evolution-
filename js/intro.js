@@ -98,13 +98,6 @@
     state.endTimer = window.setTimeout(endIntro, duration);
   };
 
-  const setPauseButton = () => {
-    const pauseButton = state.overlay?.querySelector(".swdm-intro__pause");
-    if (!pauseButton) return;
-    pauseButton.textContent = state.paused ? "Resume Intro" : "Pause Intro";
-    pauseButton.setAttribute("aria-pressed", state.paused ? "true" : "false");
-  };
-
   const pauseIntro = () => {
     if (!state.overlay || state.ending || state.paused) return;
     state.paused = true;
@@ -112,14 +105,12 @@
     state.remaining = Math.max(0, state.remaining - elapsed);
     window.clearTimeout(state.endTimer);
     state.overlay.classList.add("is-paused");
-    setPauseButton();
   };
 
   const resumeIntro = () => {
     if (!state.overlay || state.ending || !state.paused) return;
     state.paused = false;
     state.overlay.classList.remove("is-paused");
-    setPauseButton();
     startEndTimer(Math.max(120, state.remaining));
   };
 
@@ -142,9 +133,14 @@
 
     document.body.classList.add("swdm-intro-active");
     state.overlay.classList.remove("is-paused", "is-ending");
-    state.overlay.querySelector(".swdm-intro__skip")?.addEventListener("click", endIntro, { once: true });
-    state.overlay.querySelector(".swdm-intro__pause")?.addEventListener("click", togglePause);
-    setPauseButton();
+    state.overlay.querySelector(".swdm-intro__skip")?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      endIntro();
+    }, { once: true });
+    state.overlay.addEventListener("click", (event) => {
+      if (event.target.closest(".swdm-intro__skip")) return;
+      togglePause();
+    });
     startEndTimer();
   };
 

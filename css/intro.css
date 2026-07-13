@@ -29,10 +29,7 @@ body.swdm-intro-standalone {
   min-height: 100svh;
   max-width: 100vw;
   color: #f1f4f5;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(91, 95, 101, .22), transparent 36%),
-    radial-gradient(circle at 72% 58%, rgba(161, 12, 20, .16), transparent 34%),
-    linear-gradient(135deg, #010203 0%, #0b0d10 44%, #181b20 62%, #030405 100%);
+  background: #000;
   font-family: "Arial Black", Impact, Arial, sans-serif;
   isolation: isolate;
   touch-action: manipulation;
@@ -42,6 +39,19 @@ body.swdm-intro-standalone {
 .swdm-intro.is-ending {
   pointer-events: none;
   animation: swdmIntroExit .55s ease-in forwards;
+}
+
+.swdm-intro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(91, 95, 101, .22), transparent 36%),
+    radial-gradient(circle at 72% 58%, rgba(145, 152, 158, .13), transparent 34%),
+    linear-gradient(135deg, #000 0%, #070809 44%, #181b20 62%, #020304 100%);
+  opacity: 0;
+  animation: graphiteWake 9s ease forwards;
 }
 
 .swdm-intro__atmosphere,
@@ -56,6 +66,8 @@ body.swdm-intro-standalone {
 .swdm-intro__atmosphere {
   overflow: hidden;
   z-index: 0;
+  opacity: 0;
+  animation: atmosphereWake 9s ease forwards;
 }
 
 .swdm-intro__smoke {
@@ -86,42 +98,12 @@ body.swdm-intro-standalone {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, transparent, rgba(255,255,255,.08), rgba(202,16,27,.42), transparent),
+    linear-gradient(180deg, transparent, rgba(255,255,255,.08), rgba(214,220,224,.30), transparent),
     repeating-linear-gradient(180deg, rgba(255,255,255,.025) 0 1px, transparent 1px 7px);
   background-size: 100% 24%, 100% 100%;
   mix-blend-mode: screen;
   opacity: .55;
   animation: scanRun 9s cubic-bezier(.24,.8,.2,1) forwards;
-}
-
-.swdm-intro__spark {
-  position: absolute;
-  width: clamp(90px, 18vmin, 220px);
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #f4f5f4, #c20f1b, transparent);
-  box-shadow: 0 0 18px rgba(210, 20, 34, .6);
-  opacity: 0;
-}
-
-.swdm-intro__spark--one {
-  top: 26%;
-  left: 12%;
-  transform: rotate(-18deg);
-  animation: sparkCut 9s .9s ease-out forwards;
-}
-
-.swdm-intro__spark--two {
-  top: 58%;
-  right: 8%;
-  transform: rotate(12deg);
-  animation: sparkCut 9s 3.2s ease-out forwards;
-}
-
-.swdm-intro__spark--three {
-  bottom: 22%;
-  left: 28%;
-  transform: rotate(3deg);
-  animation: sparkCut 9s 5.8s ease-out forwards;
 }
 
 .swdm-intro__name-reveal {
@@ -148,7 +130,7 @@ body.swdm-intro-standalone {
   text-shadow:
     0 0 2px rgba(255,255,255,.65),
     0 0 16px rgba(220,224,226,.32),
-    0 0 34px rgba(205,20,31,.15);
+    0 0 34px rgba(214,220,224,.18);
   animation: metalName 9s ease forwards;
 }
 
@@ -183,7 +165,7 @@ body.swdm-intro-standalone {
   font-size: clamp(1.2rem, 5.6vmin, 4.6rem);
   line-height: .88;
   letter-spacing: .08em;
-  text-shadow: 0 0 18px rgba(225,226,226,.28), 0 0 28px rgba(201,17,28,.22);
+  text-shadow: 0 0 18px rgba(225,226,226,.28), 0 0 28px rgba(214,220,224,.18);
 }
 
 .swdm-intro__service-stage {
@@ -219,7 +201,7 @@ body.swdm-intro-standalone {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(90deg, transparent 0 48%, rgba(194, 16, 28, .42) 50%, transparent 55%);
+  background: linear-gradient(90deg, transparent 0 48%, rgba(214, 220, 224, .28) 50%, transparent 55%);
   mix-blend-mode: screen;
   transform: translateX(-100%);
 }
@@ -243,7 +225,7 @@ body.swdm-intro-standalone {
   padding: clamp(14px, 3vmin, 40px);
   background:
     linear-gradient(90deg, rgba(3,4,5,.78), rgba(3,4,5,.94)),
-    radial-gradient(circle at 20% 40%, rgba(201, 17, 30, .18), transparent 46%);
+    radial-gradient(circle at 20% 40%, rgba(150, 158, 164, .16), transparent 46%);
 }
 
 .swdm-intro__service-panel p {
@@ -319,7 +301,7 @@ body.swdm-intro-standalone {
   font-size: var(--final-title);
   line-height: .86;
   letter-spacing: .07em;
-  text-shadow: 0 0 18px rgba(255,255,255,.26), 0 0 28px rgba(195,16,27,.18);
+  text-shadow: 0 0 18px rgba(255,255,255,.26), 0 0 28px rgba(214,220,224,.16);
 }
 
 .swdm-intro__final-lockup span {
@@ -337,7 +319,7 @@ body.swdm-intro-standalone {
   z-index: 10;
   min-width: 96px;
   min-height: 44px;
-  border: 1px solid rgba(210, 20, 32, .62);
+  border: 1px solid rgba(188, 198, 204, .56);
   background: rgba(4, 5, 7, .74);
   color: #f2f5f6;
   padding: 10px 15px;
@@ -345,19 +327,31 @@ body.swdm-intro-standalone {
   letter-spacing: .12em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 0 18px rgba(195, 16, 27, .22);
+  box-shadow: 0 0 18px rgba(188, 198, 204, .20);
 }
 
 .swdm-intro__skip:hover,
 .swdm-intro__skip:focus-visible {
   outline: none;
-  border-color: #ff3c48;
-  box-shadow: 0 0 26px rgba(210, 20, 32, .48);
+  border-color: #f0f4f6;
+  box-shadow: 0 0 26px rgba(220, 226, 230, .38);
 }
 
 @keyframes nameStage {
   0%, 23% { opacity: 1; transform: scale(1); }
   30%, 100% { opacity: 0; transform: scale(2.6); }
+}
+
+@keyframes graphiteWake {
+  0%, 6% { opacity: 0; }
+  13%, 90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes atmosphereWake {
+  0%, 8% { opacity: 0; }
+  16%, 90% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes metalName {
@@ -408,7 +402,7 @@ body.swdm-intro-standalone {
 @keyframes finalLockup {
   0%, 77% { opacity: 0; transform: scale(.86); }
   82%, 93% { opacity: 1; transform: scale(1); }
-  96% { opacity: 1; transform: scale(1.02); filter: drop-shadow(0 0 20px rgba(200, 16, 28, .34)); }
+  96% { opacity: 1; transform: scale(1.02); filter: drop-shadow(0 0 20px rgba(214, 220, 224, .28)); }
   100% { opacity: 0; transform: scale(1.08); }
 }
 
@@ -428,12 +422,6 @@ body.swdm-intro-standalone {
   0% { background-position: 0 -40svh, 0 0; opacity: .3; }
   45% { opacity: .62; }
   100% { background-position: 0 120svh, 0 0; opacity: 0; }
-}
-
-@keyframes sparkCut {
-  0%, 5% { opacity: 0; transform: translateX(-26vw) rotate(var(--spark-rotate, -10deg)); }
-  9%, 12% { opacity: .95; }
-  20%, 100% { opacity: 0; transform: translateX(28vw) rotate(var(--spark-rotate, -10deg)); }
 }
 
 @keyframes swdmIntroExit {

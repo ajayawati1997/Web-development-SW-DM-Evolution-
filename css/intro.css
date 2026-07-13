@@ -361,7 +361,7 @@ body.swdm-intro-standalone {
   left: 50%;
   width: min(74vw, 880px);
   height: clamp(10px, 1.7vmin, 22px);
-  background: #b40000;
+  background: linear-gradient(90deg, transparent 0, rgba(134, 0, 0, .18) 12%, #7d0000 32%, #d41616 50%, #7d0000 68%, rgba(134, 0, 0, .18) 88%, transparent 100%);
   opacity: 0;
   pointer-events: none;
 }

@@ -144,42 +144,39 @@ body.swdm-intro-standalone {
   position: absolute;
   inset: 0;
   z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vmin, 26px);
   opacity: 0;
-  animation: processFloatStage 11s ease forwards;
+  transform: rotate(-8deg) translateX(0);
+  animation: processFilmStage 11s ease forwards;
 }
 
 .swdm-intro__process-float img {
-  position: absolute;
-  width: clamp(150px, 24vmin, 360px);
-  aspect-ratio: 1.45;
+  position: relative;
+  width: clamp(170px, 25vmin, 340px);
+  aspect-ratio: 1.65;
   object-fit: cover;
-  opacity: .46;
-  filter: grayscale(.28) brightness(.62) contrast(1.18);
-  transform: translate3d(0, 0, 0);
-  animation: processFloat 11s ease forwards;
+  opacity: .42;
+  filter: grayscale(.35) brightness(.55) contrast(1.2);
+  transform: skewX(-4deg);
 }
 
 .swdm-intro__process-float img:nth-child(1) {
-  left: 8vw;
-  top: 18vh;
+  margin-top: clamp(10px, 4vmin, 52px);
 }
 
 .swdm-intro__process-float img:nth-child(2) {
-  right: 8vw;
-  top: 16vh;
-  animation-delay: .08s;
+  margin-top: calc(clamp(10px, 4vmin, 52px) * -1);
 }
 
 .swdm-intro__process-float img:nth-child(3) {
-  left: 13vw;
-  bottom: 17vh;
-  animation-delay: .16s;
+  margin-top: clamp(10px, 4vmin, 52px);
 }
 
 .swdm-intro__process-float img:nth-child(4) {
-  right: 13vw;
-  bottom: 18vh;
-  animation-delay: .24s;
+  margin-top: calc(clamp(10px, 4vmin, 52px) * -1);
 }
 
 .swdm-intro__word-burst {
@@ -467,18 +464,10 @@ body.swdm-intro-standalone {
   45%, 100% { opacity: 0; transform: scale(1.18); }
 }
 
-@keyframes processFloatStage {
-  0%, 27% { opacity: 0; }
-  31%, 43% { opacity: 1; }
-  48%, 100% { opacity: 0; }
-}
-
-@keyframes processFloat {
-  0%, 27% { transform: translate3d(0, 20px, 0) scale(.94); }
-  32% { transform: translate3d(-10px, -8px, 0) scale(1); }
-  36% { transform: translate3d(12px, 8px, 0) scale(1.035); }
-  41% { transform: translate3d(-6px, 2px, 0) scale(1.02); }
-  48%, 100% { transform: translate3d(0, -18px, 0) scale(1.08); }
+@keyframes processFilmStage {
+  0%, 27% { opacity: 0; transform: rotate(-8deg) translateX(-7vw) scale(.98); }
+  31%, 43% { opacity: 1; transform: rotate(-8deg) translateX(0) scale(1); }
+  48%, 100% { opacity: 0; transform: rotate(-8deg) translateX(7vw) scale(1.02); }
 }
 
 @keyframes serviceDesign {
@@ -555,28 +544,24 @@ body.swdm-intro-standalone {
   }
 
   .swdm-intro__process-float img {
-    width: clamp(100px, 30vmin, 180px);
-    opacity: .38;
+    width: clamp(105px, 33vmin, 180px);
+    opacity: .34;
   }
 
   .swdm-intro__process-float img:nth-child(1) {
-    left: 3vw;
-    top: 18vh;
+    margin-top: 18px;
   }
 
   .swdm-intro__process-float img:nth-child(2) {
-    right: 3vw;
-    top: 20vh;
+    margin-top: -18px;
   }
 
   .swdm-intro__process-float img:nth-child(3) {
-    left: 4vw;
-    bottom: 18vh;
+    margin-top: 18px;
   }
 
   .swdm-intro__process-float img:nth-child(4) {
-    right: 4vw;
-    bottom: 19vh;
+    margin-top: -18px;
   }
 
   .swdm-intro__service-panel {

@@ -284,15 +284,15 @@ body.swdm-intro-standalone {
 }
 
 .swdm-intro__service-panel.is-design::before {
-  animation: serviceSoftShine 9s 2.05s ease forwards;
-}
-
-.swdm-intro__service-panel.is-development::before {
   animation: serviceSoftShine 9s 3.75s ease forwards;
 }
 
+.swdm-intro__service-panel.is-development::before {
+  animation: serviceSoftShine 9s 5.05s ease forwards;
+}
+
 .swdm-intro__service-panel.is-machining::before {
-  animation: serviceSoftShine 9s 5.45s ease forwards;
+  animation: serviceSoftShine 9s 6.35s ease forwards;
 }
 
 .swdm-intro__final-lockup {
@@ -391,27 +391,27 @@ body.swdm-intro-standalone {
 }
 
 @keyframes wordBurst {
-  0%, 23% { opacity: 0; transform: scale(.85); }
-  27%, 34% { opacity: 1; transform: scale(1); }
-  41%, 100% { opacity: 0; transform: scale(1.28); }
+  0%, 28% { opacity: 0; transform: scale(.85); }
+  32%, 40% { opacity: 1; transform: scale(1); }
+  45%, 100% { opacity: 0; transform: scale(1.18); }
 }
 
 @keyframes serviceDesign {
-  0%, 22% { opacity: 0; transform: translateX(18vw) scale(.88); }
-  25%, 35% { opacity: 1; transform: translateX(0) scale(1); }
-  39%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
-}
-
-@keyframes serviceDevelopment {
-  0%, 39% { opacity: 0; transform: translateX(18vw) scale(.88); }
-  42%, 53% { opacity: 1; transform: translateX(0) scale(1); }
+  0%, 42% { opacity: 0; transform: translateX(18vw) scale(.88); }
+  45%, 53% { opacity: 1; transform: translateX(0) scale(1); }
   57%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
-@keyframes serviceMachining {
+@keyframes serviceDevelopment {
   0%, 57% { opacity: 0; transform: translateX(18vw) scale(.88); }
-  60%, 72% { opacity: 1; transform: translateX(0) scale(1); }
-  77%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
+  60%, 68% { opacity: 1; transform: translateX(0) scale(1); }
+  72%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
+}
+
+@keyframes serviceMachining {
+  0%, 72% { opacity: 0; transform: translateX(18vw) scale(.88); }
+  75%, 86% { opacity: 1; transform: translateX(0) scale(1); }
+  91%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
 @keyframes serviceSoftShine {
@@ -421,9 +421,9 @@ body.swdm-intro-standalone {
 }
 
 @keyframes finalLockup {
-  0%, 77% { opacity: 0; transform: scale(.86); }
-  82%, 93% { opacity: 1; transform: scale(1); }
-  96% { opacity: 1; transform: scale(1.02); }
+  0%, 91% { opacity: 0; transform: scale(.86); }
+  94%, 98% { opacity: 1; transform: scale(1); }
+  99% { opacity: 1; transform: scale(1.02); }
   100% { opacity: 0; transform: scale(1.08); }
 }
 

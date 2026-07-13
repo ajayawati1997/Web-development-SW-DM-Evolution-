@@ -144,8 +144,8 @@ body.swdm-intro-standalone {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(60vw, 860px);
-  height: min(60svh, 520px);
+  width: min(52vw, 760px);
+  height: min(52svh, 440px);
   z-index: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -472,10 +472,10 @@ body.swdm-intro-standalone {
 @keyframes processFilmStage {
   0%, 27% { opacity: 0; transform: translate(-50%, -50%) scale(.92); }
   31% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.06); }
+  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.03); }
   39% { opacity: 1; transform: translate(-50%, -50%) scale(.99); }
-  43% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
-  48%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.12); }
+  43% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
+  48%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.06); }
 }
 
 @keyframes serviceDesign {

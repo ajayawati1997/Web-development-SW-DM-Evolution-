@@ -38,7 +38,10 @@
     root: null,
     overlay: null,
     endTimer: null,
-    ending: false
+    ending: false,
+    paused: false,
+    startedAt: 0,
+    remaining: 0
   };
 
   const revealHomepage = () => {
@@ -74,6 +77,7 @@
   const endIntro = () => {
     if (state.ending) return;
     state.ending = true;
+    state.paused = false;
     markIntroSeen();
     window.clearTimeout(state.endTimer);
 
@@ -82,12 +86,54 @@
       return;
     }
 
+    state.overlay.classList.remove("is-paused");
     state.overlay.classList.add("is-ending");
     window.setTimeout(revealHomepage, SWDM_INTRO_CONFIG.timings.exitDuration);
   };
 
+  const startEndTimer = (duration = SWDM_INTRO_CONFIG.timings.totalDuration) => {
+    window.clearTimeout(state.endTimer);
+    state.remaining = duration;
+    state.startedAt = performance.now();
+    state.endTimer = window.setTimeout(endIntro, duration);
+  };
+
+  const setPauseButton = () => {
+    const pauseButton = state.overlay?.querySelector(".swdm-intro__pause");
+    if (!pauseButton) return;
+    pauseButton.textContent = state.paused ? "Resume Intro" : "Pause Intro";
+    pauseButton.setAttribute("aria-pressed", state.paused ? "true" : "false");
+  };
+
+  const pauseIntro = () => {
+    if (!state.overlay || state.ending || state.paused) return;
+    state.paused = true;
+    const elapsed = performance.now() - state.startedAt;
+    state.remaining = Math.max(0, state.remaining - elapsed);
+    window.clearTimeout(state.endTimer);
+    state.overlay.classList.add("is-paused");
+    setPauseButton();
+  };
+
+  const resumeIntro = () => {
+    if (!state.overlay || state.ending || !state.paused) return;
+    state.paused = false;
+    state.overlay.classList.remove("is-paused");
+    setPauseButton();
+    startEndTimer(Math.max(120, state.remaining));
+  };
+
+  const togglePause = () => {
+    if (state.paused) {
+      resumeIntro();
+      return;
+    }
+    pauseIntro();
+  };
+
   const activateIntro = (overlay) => {
     state.ending = false;
+    state.paused = false;
     state.overlay = overlay;
     if (!state.overlay) {
       revealHomepage();
@@ -95,8 +141,11 @@
     }
 
     document.body.classList.add("swdm-intro-active");
+    state.overlay.classList.remove("is-paused", "is-ending");
     state.overlay.querySelector(".swdm-intro__skip")?.addEventListener("click", endIntro, { once: true });
-    state.endTimer = window.setTimeout(endIntro, SWDM_INTRO_CONFIG.timings.totalDuration);
+    state.overlay.querySelector(".swdm-intro__pause")?.addEventListener("click", togglePause);
+    setPauseButton();
+    startEndTimer();
   };
 
   const mountIntro = (html) => {
@@ -144,6 +193,7 @@
   const replayIntro = () => {
     window.clearTimeout(state.endTimer);
     state.ending = false;
+    state.paused = false;
     loadIntro({ force: true });
   };
 
@@ -173,6 +223,8 @@
       }
     },
     play: replayIntro,
+    pause: pauseIntro,
+    resume: resumeIntro,
     end: endIntro
   };
 

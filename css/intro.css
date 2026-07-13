@@ -41,6 +41,15 @@ body.swdm-intro-standalone {
   animation: swdmIntroExit .55s ease-in forwards;
 }
 
+.swdm-intro.is-paused,
+.swdm-intro.is-paused *,
+.swdm-intro.is-paused::before,
+.swdm-intro.is-paused::after,
+.swdm-intro.is-paused *::before,
+.swdm-intro.is-paused *::after {
+  animation-play-state: paused !important;
+}
+
 .swdm-intro::before {
   content: "";
   position: absolute;
@@ -404,9 +413,9 @@ body.swdm-intro-standalone {
   letter-spacing: clamp(.08em, 1vmin, .22em);
 }
 
-.swdm-intro__skip {
+.swdm-intro__skip,
+.swdm-intro__pause {
   position: absolute;
-  right: calc(clamp(12px, 3vw, 34px) + var(--safe-right));
   bottom: calc(clamp(12px, 3vw, 34px) + var(--safe-bottom));
   z-index: 10;
   min-width: 96px;
@@ -422,11 +431,47 @@ body.swdm-intro-standalone {
   box-shadow: 0 0 18px rgba(188, 198, 204, .20);
 }
 
+.swdm-intro__skip {
+  right: calc(clamp(12px, 3vw, 34px) + var(--safe-right));
+}
+
+.swdm-intro__pause {
+  right: calc(clamp(124px, 15vw, 166px) + var(--safe-right));
+}
+
 .swdm-intro__skip:hover,
-.swdm-intro__skip:focus-visible {
+.swdm-intro__skip:focus-visible,
+.swdm-intro__pause:hover,
+.swdm-intro__pause:focus-visible {
   outline: none;
   border-color: #f0f4f6;
   box-shadow: 0 0 26px rgba(220, 226, 230, .38);
+}
+
+.swdm-intro__pause-note {
+  position: absolute;
+  left: 50%;
+  bottom: calc(clamp(62px, 9vmin, 104px) + var(--safe-bottom));
+  z-index: 11;
+  max-width: min(90vw, 680px);
+  color: rgba(210, 216, 220, .76);
+  font-family: Arial, sans-serif;
+  font-size: clamp(.7rem, 1.8vmin, 1rem);
+  font-weight: 800;
+  letter-spacing: .16em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(0, 0, 0, .92);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition: opacity .22s ease, transform .22s ease;
+}
+
+.swdm-intro.is-paused .swdm-intro__pause-note {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 @keyframes nameStage {

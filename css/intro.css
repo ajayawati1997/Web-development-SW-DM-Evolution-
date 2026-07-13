@@ -152,13 +152,10 @@ body.swdm-intro-standalone {
   align-items: stretch;
   overflow: hidden;
   border: 1px solid rgba(180, 188, 194, .22);
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.035), transparent 28%),
-    repeating-linear-gradient(135deg, rgba(148,154,160,.08) 0 1px, transparent 1px 13px),
-    #020304;
-  box-shadow: 0 28px 70px rgba(0,0,0,.62), inset 0 0 0 1px rgba(255,255,255,.05);
+  background: #020304;
+  box-shadow: 0 0 50px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.04);
   opacity: 0;
-  transform: translate3d(0, 22px, 0) scale(.94);
+  transform: translateX(18vw) scale(.88);
 }
 
 .swdm-intro__service-panel::before {
@@ -166,20 +163,9 @@ body.swdm-intro-standalone {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background:
-    linear-gradient(90deg, transparent 0 45%, rgba(214, 220, 224, .18) 50%, transparent 56%),
-    linear-gradient(180deg, rgba(255,255,255,.06), transparent 28%, rgba(0,0,0,.18));
+  background: linear-gradient(90deg, transparent 0 48%, rgba(214, 220, 224, .28) 50%, transparent 55%);
+  mix-blend-mode: screen;
   transform: translateX(-100%);
-  pointer-events: none;
-}
-
-.swdm-intro__service-panel::after {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  z-index: 1;
-  border: 1px solid rgba(160, 168, 174, .14);
-  pointer-events: none;
 }
 
 .swdm-intro__service-panel img {
@@ -204,9 +190,8 @@ body.swdm-intro-standalone {
   overflow: hidden;
   padding: clamp(14px, 3vmin, 40px);
   background:
-    linear-gradient(90deg, rgba(2,3,4,.88), rgba(5,6,8,.96)),
-    repeating-linear-gradient(0deg, rgba(180,188,194,.055) 0 1px, transparent 1px 7px),
-    radial-gradient(circle at 12% 20%, rgba(150, 158, 164, .18), transparent 42%);
+    linear-gradient(90deg, rgba(3,4,5,.78), rgba(3,4,5,.94)),
+    radial-gradient(circle at 20% 40%, rgba(150, 158, 164, .16), transparent 46%);
 }
 
 .swdm-intro__service-panel p {
@@ -371,21 +356,21 @@ body.swdm-intro-standalone {
 }
 
 @keyframes serviceDesign {
-  0%, 22% { opacity: 0; transform: translate3d(0, 22px, 0) scale(.94); }
-  25%, 35% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-  39%, 100% { opacity: 0; transform: translate3d(0, -18px, 0) scale(1.03); }
+  0%, 22% { opacity: 0; transform: translateX(18vw) scale(.88); }
+  25%, 35% { opacity: 1; transform: translateX(0) scale(1); }
+  39%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
 @keyframes serviceDevelopment {
-  0%, 39% { opacity: 0; transform: translate3d(0, 22px, 0) scale(.94); }
-  42%, 53% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-  57%, 100% { opacity: 0; transform: translate3d(0, -18px, 0) scale(1.03); }
+  0%, 39% { opacity: 0; transform: translateX(18vw) scale(.88); }
+  42%, 53% { opacity: 1; transform: translateX(0) scale(1); }
+  57%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
 @keyframes serviceMachining {
-  0%, 57% { opacity: 0; transform: translate3d(0, 22px, 0) scale(.94); }
-  60%, 72% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
-  77%, 100% { opacity: 0; transform: translate3d(0, -18px, 0) scale(1.03); }
+  0%, 57% { opacity: 0; transform: translateX(18vw) scale(.88); }
+  60%, 72% { opacity: 1; transform: translateX(0) scale(1); }
+  77%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
 @keyframes serviceSlash {

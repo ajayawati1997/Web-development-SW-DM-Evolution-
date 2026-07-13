@@ -169,13 +169,14 @@ html.swdm-intro-pending #swdm-intro-root:empty::before {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(74vw, 1020px);
-  height: min(54svh, 460px);
+  width: min(72vw, 980px);
+  height: min(46svh, 390px);
   max-width: calc(100vw - (var(--pad) * 2));
-  max-height: calc(100svh - 190px);
+  max-height: calc(100svh - 170px);
   z-index: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: clamp(7px, 1vmin, 16px);
   opacity: 0;
   transform: translate(-50%, -50%) scale(1);
@@ -618,8 +619,8 @@ html.swdm-intro-pending #swdm-intro-root:empty::before {
 
   .swdm-intro__process-float {
     width: min(96vw, 760px);
-    height: min(48svh, 390px);
-    max-height: calc(100svh - 164px);
+    height: min(44svh, 350px);
+    max-height: calc(100svh - 150px);
     gap: clamp(5px, 1.4vmin, 9px);
   }
 
@@ -664,7 +665,7 @@ html.swdm-intro-pending #swdm-intro-root:empty::before {
 
   .swdm-intro__process-float {
     width: min(84vw, 860px);
-    height: min(58svh, 280px);
+    height: min(50svh, 240px);
     max-height: calc(100svh - 78px);
   }
 

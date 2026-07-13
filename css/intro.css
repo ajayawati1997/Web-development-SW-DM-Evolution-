@@ -144,13 +144,13 @@ body.swdm-intro-standalone {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(46vw, 620px);
-  height: min(30svh, 260px);
-  max-height: calc(100svh - 180px);
+  width: min(40vw, 520px);
+  height: min(24svh, 190px);
+  max-height: min(24svh, 190px);
   z-index: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(8px, 1.2vmin, 16px);
+  gap: clamp(6px, .9vmin, 12px);
   opacity: 0;
   transform: translate(-50%, -50%) scale(1);
   animation: processFilmStage 20s ease forwards;
@@ -474,10 +474,10 @@ body.swdm-intro-standalone {
 @keyframes processFilmStage {
   0%, 22% { opacity: 0; transform: translate(-50%, -50%) scale(.92); }
   26% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  30% { opacity: 1; transform: translate(-50%, -50%) scale(1.03); }
+  30% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
   34% { opacity: 1; transform: translate(-50%, -50%) scale(.99); }
-  37% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
-  41%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.06); }
+  37% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+  41%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.03); }
 }
 
 @keyframes serviceDesign {

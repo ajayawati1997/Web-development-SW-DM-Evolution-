@@ -366,8 +366,9 @@ body.swdm-intro-standalone {
   left: 50%;
   width: min(74vw, 880px);
   height: clamp(10px, 1.7vmin, 22px);
-  background: linear-gradient(90deg, transparent 0, rgba(134, 0, 0, .18) 12%, #7d0000 32%, #d41616 50%, #7d0000 68%, rgba(134, 0, 0, .18) 88%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0, rgba(110, 0, 0, .14) 10%, #520000 32%, #980000 50%, #520000 68%, rgba(110, 0, 0, .14) 90%, transparent 100%);
   opacity: 0;
+  filter: blur(5px) brightness(.82);
   pointer-events: none;
 }
 
@@ -510,15 +511,19 @@ body.swdm-intro-standalone {
 }
 
 @keyframes finalTypeALineRight {
-  0%, 86% { opacity: 0; transform: translateX(-78%) scaleX(.62); }
-  89%, 98.7% { opacity: .86; transform: translateX(-50%) scaleX(1); }
-  100% { opacity: 0; transform: translateX(-14%) scaleX(1.08); }
+  0%, 86% { opacity: 0; filter: blur(8px) brightness(.72); transform: translateX(-105%) scaleX(.62); }
+  89% { opacity: .46; filter: blur(6px) brightness(.78); transform: translateX(-86%) scaleX(.76); }
+  94% { opacity: .92; filter: blur(.4px) brightness(.92); transform: translateX(-50%) scaleX(1); }
+  98.7% { opacity: .56; filter: blur(5px) brightness(.78); transform: translateX(-18%) scaleX(.92); }
+  100% { opacity: 0; filter: blur(9px) brightness(.68); transform: translateX(4%) scaleX(.82); }
 }
 
 @keyframes finalTypeALineLeft {
-  0%, 86% { opacity: 0; transform: translateX(-22%) scaleX(.62); }
-  89%, 98.7% { opacity: .78; transform: translateX(-50%) scaleX(1); }
-  100% { opacity: 0; transform: translateX(-86%) scaleX(1.08); }
+  0%, 86% { opacity: 0; filter: blur(8px) brightness(.72); transform: translateX(5%) scaleX(.62); }
+  89% { opacity: .42; filter: blur(6px) brightness(.78); transform: translateX(-14%) scaleX(.76); }
+  94% { opacity: .86; filter: blur(.4px) brightness(.92); transform: translateX(-50%) scaleX(1); }
+  98.7% { opacity: .52; filter: blur(5px) brightness(.78); transform: translateX(-82%) scaleX(.92); }
+  100% { opacity: 0; filter: blur(9px) brightness(.68); transform: translateX(-104%) scaleX(.82); }
 }
 
 @keyframes smokeDrift {

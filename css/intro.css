@@ -143,9 +143,9 @@ body.swdm-intro-standalone {
 .swdm-intro__process-float {
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: min(52vw, 760px);
-  height: min(52svh, 440px);
+  top: 48%;
+  width: min(48vw, 660px);
+  height: min(36svh, 300px);
   z-index: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

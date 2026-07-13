@@ -163,9 +163,12 @@ body.swdm-intro-standalone {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(90deg, transparent 0 48%, rgba(214, 220, 224, .28) 50%, transparent 55%);
-  mix-blend-mode: screen;
-  transform: translateX(-100%);
+  background:
+    linear-gradient(120deg, transparent 0 24%, rgba(255,255,255,.06) 38%, rgba(255,255,255,.16) 48%, rgba(255,255,255,.05) 58%, transparent 76%),
+    linear-gradient(180deg, rgba(255,255,255,.04), transparent 34%, rgba(0,0,0,.16));
+  opacity: 0;
+  transform: translateX(-12%) skewX(-10deg);
+  pointer-events: none;
 }
 
 .swdm-intro__service-panel img {
@@ -255,15 +258,15 @@ body.swdm-intro-standalone {
 }
 
 .swdm-intro__service-panel.is-design::before {
-  animation: serviceSlash 9s 2.05s ease forwards;
+  animation: serviceSoftShine 9s 2.05s ease forwards;
 }
 
 .swdm-intro__service-panel.is-development::before {
-  animation: serviceSlash 9s 3.75s ease forwards;
+  animation: serviceSoftShine 9s 3.75s ease forwards;
 }
 
 .swdm-intro__service-panel.is-machining::before {
-  animation: serviceSlash 9s 5.45s ease forwards;
+  animation: serviceSoftShine 9s 5.45s ease forwards;
 }
 
 .swdm-intro__final-lockup {
@@ -373,10 +376,10 @@ body.swdm-intro-standalone {
   77%, 100% { opacity: 0; transform: translateX(-18vw) scale(.94); }
 }
 
-@keyframes serviceSlash {
-  0% { transform: translateX(-120%); }
-  12% { transform: translateX(120%); }
-  100% { transform: translateX(120%); }
+@keyframes serviceSoftShine {
+  0% { opacity: 0; transform: translateX(-12%) skewX(-10deg); }
+  18%, 58% { opacity: .85; transform: translateX(0) skewX(-10deg); }
+  100% { opacity: 0; transform: translateX(8%) skewX(-10deg); }
 }
 
 @keyframes finalLockup {

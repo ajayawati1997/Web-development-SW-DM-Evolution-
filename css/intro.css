@@ -21,7 +21,7 @@ body.swdm-intro-standalone {
   --small: clamp(.58rem, 1.55vmin, 1rem);
   --logo-size: clamp(140px, 34vmin, 430px);
   --panel-w: min(96vw, 1220px);
-  --panel-h: clamp(260px, 50svh, 540px);
+  --panel-h: clamp(260px, 52svh, 540px);
   position: fixed;
   inset: 0;
   z-index: 2147483000;
@@ -217,7 +217,7 @@ body.swdm-intro-standalone {
   width: var(--panel-w);
   height: var(--panel-h);
   display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(190px, .82fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(180px, .92fr);
   align-items: stretch;
   overflow: hidden;
   border: 0;
@@ -241,6 +241,8 @@ body.swdm-intro-standalone {
 }
 
 .swdm-intro__service-panel img {
+  align-self: center;
+  justify-self: center;
   width: 100%;
   height: 100%;
   min-width: 0;
@@ -257,6 +259,7 @@ body.swdm-intro-standalone {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: stretch;
   gap: clamp(7px, 1.1vmin, 14px);
   min-width: 0;
   overflow: hidden;
@@ -533,7 +536,8 @@ body.swdm-intro-standalone {
     --title: clamp(1.55rem, 8.2vmin, 3.2rem);
     --final-title: clamp(1.35rem, 7.2vmin, 2.75rem);
     --logo-size: clamp(120px, 38vmin, 240px);
-    --panel-h: clamp(320px, 72svh, 560px);
+    --panel-w: min(96vw, 700px);
+    --panel-h: clamp(250px, 54svh, 430px);
   }
 
   .swdm-intro__name-reveal::before,
@@ -555,23 +559,36 @@ body.swdm-intro-standalone {
   }
 
   .swdm-intro__process-float {
-    width: min(78vw, 430px);
-    height: min(52svh, 410px);
-    gap: 7px;
+    width: min(84vw, 500px);
+    height: min(46svh, 380px);
+    gap: clamp(5px, 1.4vmin, 9px);
   }
 
   .swdm-intro__service-panel {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, 48%) minmax(0, 52%);
-    width: min(96vw, 700px);
+    grid-template-columns: minmax(0, .95fr) minmax(128px, 1.05fr);
+    grid-template-rows: 1fr;
   }
 
   .swdm-intro__service-panel img {
+    width: 100%;
     height: 100%;
   }
 
   .swdm-intro__service-panel div {
     min-height: 0;
+    padding: clamp(10px, 3vmin, 22px);
+    gap: clamp(5px, 1.5vmin, 10px);
+  }
+
+  .swdm-intro__service-panel p {
+    font-size: clamp(1rem, 6.2vw, 2.35rem);
+    line-height: .94;
+  }
+
+  .swdm-intro__recap {
+    font-size: clamp(.46rem, 2.55vw, .72rem);
+    line-height: 1.08;
+    gap: 2px;
   }
 }
 
@@ -582,16 +599,25 @@ body.swdm-intro-standalone {
     --final-title: clamp(1.15rem, 7svh, 2rem);
     --logo-size: clamp(82px, 28svh, 150px);
     --panel-w: min(96vw, 980px);
-    --panel-h: min(82svh, 360px);
+    --panel-h: min(84svh, 360px);
     --small: clamp(.46rem, 2.4svh, .72rem);
   }
 
+  .swdm-intro__process-float {
+    width: min(58vw, 640px);
+    height: min(58svh, 300px);
+  }
+
   .swdm-intro__service-panel {
-    grid-template-columns: minmax(0, 1.08fr) minmax(180px, .92fr);
+    grid-template-columns: minmax(0, 1fr) minmax(170px, .86fr);
   }
 
   .swdm-intro__service-panel p {
     font-size: clamp(1rem, 6.7svh, 2.18rem);
+  }
+
+  .swdm-intro__service-panel div {
+    padding: clamp(10px, 3svh, 22px);
   }
 
   .swdm-intro__recap {

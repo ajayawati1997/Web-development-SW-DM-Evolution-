@@ -653,11 +653,85 @@ html.swdm-intro-pending #swdm-intro-root:empty::before {
     line-height: .94;
   }
 
+  .swdm-intro__service-panel.is-development p {
+    font-size: clamp(.94rem, 5.35vw, 2.05rem);
+    letter-spacing: .018em;
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
+
   .swdm-intro__recap {
     font-size: clamp(.46rem, 2.55vw, .72rem);
     line-height: 1.08;
     gap: 2px;
   }
+}
+
+body.swdm-intro-android-view .swdm-intro {
+  --title: clamp(1.55rem, 8.2vmin, 3.2rem);
+  --final-title: clamp(1.35rem, 7.2vmin, 2.75rem);
+  --logo-size: clamp(120px, 38vmin, 240px);
+  --panel-w: min(96vw, 700px);
+  --panel-h: clamp(250px, 54svh, 430px);
+}
+
+body.swdm-intro-android-view .swdm-intro__name-reveal::before,
+body.swdm-intro-android-view .swdm-intro__name-reveal::after {
+  width: clamp(42px, 11vmin, 78px);
+  height: min(58svh, 430px);
+}
+
+body.swdm-intro-android-view .swdm-intro__final-lockup::before,
+body.swdm-intro-android-view .swdm-intro__final-lockup::after {
+  width: min(86vw, 560px);
+  height: clamp(8px, 2.2vmin, 16px);
+}
+
+body.swdm-intro-android-view .swdm-intro__process-float {
+  width: min(96vw, 760px);
+  height: min(44svh, 350px);
+  max-height: calc(100svh - 150px);
+  gap: clamp(5px, 1.4vmin, 9px);
+}
+
+body.swdm-intro-android-view .swdm-intro__process-float img {
+  width: 100%;
+  height: 100%;
+  opacity: .34;
+}
+
+body.swdm-intro-android-view .swdm-intro__service-panel {
+  grid-template-columns: minmax(0, .95fr) minmax(128px, 1.05fr);
+  grid-template-rows: 1fr;
+}
+
+body.swdm-intro-android-view .swdm-intro__service-panel img {
+  width: 100%;
+  height: 100%;
+}
+
+body.swdm-intro-android-view .swdm-intro__service-panel div {
+  min-height: 0;
+  padding: clamp(10px, 3vmin, 22px);
+  gap: clamp(5px, 1.5vmin, 10px);
+}
+
+body.swdm-intro-android-view .swdm-intro__service-panel p {
+  font-size: clamp(1rem, 6.2vw, 2.35rem);
+  line-height: .94;
+}
+
+body.swdm-intro-android-view .swdm-intro__service-panel.is-development p {
+  font-size: clamp(.94rem, 5.35vw, 2.05rem);
+  letter-spacing: .018em;
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+
+body.swdm-intro-android-view .swdm-intro__recap {
+  font-size: clamp(.46rem, 2.55vw, .72rem);
+  line-height: 1.08;
+  gap: 2px;
 }
 
 @media (max-height: 520px) and (orientation: landscape) {

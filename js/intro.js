@@ -58,6 +58,14 @@
     return window.matchMedia?.("(prefers-reduced-motion: reduce)").matches === true;
   };
 
+  const isAndroidIntroDevice = () => {
+    const ua = navigator.userAgent || "";
+    const smallTouchScreen = navigator.maxTouchPoints > 1
+      && Math.min(screen.width || 0, screen.height || 0) <= 540
+      && Math.max(screen.width || 0, screen.height || 0) <= 1200;
+    return /Android/i.test(ua) || smallTouchScreen;
+  };
+
   const sessionHasSeenIntro = () => {
     if (!SWDM_INTRO_CONFIG.showOncePerSession) return false;
     try {
@@ -134,6 +142,7 @@
     }
 
     document.body.classList.add("swdm-intro-active");
+    document.body.classList.toggle("swdm-intro-android-view", isAndroidIntroDevice());
     document.documentElement.classList.remove("swdm-intro-pending");
     state.overlay.classList.remove("is-paused", "is-ending");
     state.overlay.querySelector(".swdm-intro__skip")?.addEventListener("click", (event) => {

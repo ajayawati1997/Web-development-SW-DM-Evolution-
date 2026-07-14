@@ -51,6 +51,7 @@
     if (state.root && !document.body.classList.contains("swdm-intro-standalone")) {
       state.root.replaceChildren();
     }
+    document.dispatchEvent(new CustomEvent("swdm:homepage-revealed"));
   };
 
   const hasReducedMotion = () => {
